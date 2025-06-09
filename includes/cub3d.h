@@ -6,7 +6,7 @@
 /*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/09 13:22:58 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/06/09 15:09:48 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,23 @@
 # define CUB3D_H
 
 # include <math.h>
-# include "../libraries/libft/libft.h"
-# include "../libraries/MLX42/include/MLX42/MLX42.h"
+# include <stdlib.h>
+# include "typedef.h"
+# include "libft.h"
+# include "get_next_line.h"
+# include "garbage_collector.h"
+# include "ft_printf.h"
+# include "MLX42/MLX42.h"
 
+typedef struct s_map
+{
+    char **map;
+    int width;
+    int height;
+} t_map;
+
+
+void    error_exit(char *msg);
+int     validate_map(char *filename);
 
 #endif

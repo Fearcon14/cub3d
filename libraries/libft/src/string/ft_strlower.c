@@ -3,14 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlower.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/15 13:48:01 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/03/26 15:26:53 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/09 14:50:27 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "garbage_collector.h"
 #include "libft.h"
 
 /*
@@ -32,10 +31,9 @@ char	*ft_strlower(char *str)
 	if (!str)
 		return (NULL);
 	s_len = ft_strlen(str);
-	lower_str = gc_malloc(s_len + 1);
+	lower_str = malloc(s_len + 1);
 	if (!lower_str)
 		return (NULL);
-	gc_add_context(EXECUTOR, lower_str);
 	i = 0;
 	while (str[i] != '\0')
 	{
