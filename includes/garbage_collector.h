@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:45:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/04/07 15:06:37 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/09 15:25:16 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 
 typedef enum e_gc_context
 {
-	TOKENIZER,
-	AST,
-	EXECUTOR,
-	ENVIRON
+	MAP,
+	WINDOW,
+	TEXTURES,
+	PLAYER,
 }		t_gc_context;
 
 // gc_malloc.c
