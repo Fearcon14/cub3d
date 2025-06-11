@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   garbage_collector.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
+/*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:45:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/09 15:25:16 by rmakoni          ###   ########.fr       */
+/*   Updated: 2025/06/11 15:42:07 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 
 typedef enum e_gc_context
 {
+	VALIDATION,
 	MAP,
 	WINDOW,
 	TEXTURES,

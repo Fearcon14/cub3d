@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/11 13:39:37 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/11 14:36:27 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	error_exit(char *msg)
 // DONE: Map extension check should check ending not beginning of string
 int	main(int argc, char **argv)
 {
+	t_map	map;
+
 	if (argc != 2)
 		error_exit("Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
@@ -32,7 +34,7 @@ int	main(int argc, char **argv)
 	{
 		error_exit("Invalid file extension");
 	}
-	if (validate_map(argv[1]) == 0)
+	if (validate_map(argv[1], &map) == 0)
 		error_exit("Invalid map");
 	return (1);
 }
