@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/11 14:36:27 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/12 13:03:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	main(int argc, char **argv)
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
 			".cub", 4) != 0)
 	{
-		error_exit("Invalid file extension");
+		error_exit("Invalid file extension (.cub expected)");
 	}
 	if (validate_map(argv[1], &map) == 0)
 		error_exit("Invalid map");
