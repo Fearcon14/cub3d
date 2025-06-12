@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/09 15:10:42 by rmakoni          ###   ########.fr        #
+#    Updated: 2025/06/12 15:43:58 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,18 +18,23 @@ OUT_DIR = out
 # Object Files
 OBJS = $(addprefix $(OUT_DIR)/, $(SRCS:.c=.o))
 
-SRC_SUBDIRS = $(SRC_DIR) \
-              $(SRC_DIR)/Validate \
-			  $(SRC_DIR)/GarbageCollector
+SRC_SUBDIRS =	$(SRC_DIR) \
+				$(SRC_DIR)/Validate \
+				$(SRC_DIR)/GarbageCollector \
+				$(SRC_DIR)/Parser \
+				$(SRC_DIR)/Utils
 
 VPATH = $(SRC_SUBDIRS)
 
 # Source files (just filenames, no paths needed!)
-SRCS = cub3d.c \
-       validate.c \
-	   gc_malloc.c \
-	   gc_free_context.c \
-	   gc_holder.c
+SRCS =	cub3d.c \
+		validate.c \
+		gc_malloc.c \
+		gc_free_context.c \
+		gc_holder.c \
+		parse_map.c \
+		utils.c \
+		process_line.c
 
 # Compiler
 CC = gcc
@@ -50,9 +55,9 @@ MLX42_DIR = libraries/MLX42
 
 all: $(NAME)
 
-debug: CFLAGS += $(DEBUG_FLAGS)
-debug: LDFLAGS += $(DEBUG_FLAGS)
-debug: $(NAME)
+debug: export CFLAGS = -Wall -Wextra -Werror $(DEBUG_FLAGS)
+debug: export LDFLAGS += $(DEBUG_FLAGS)
+debug: fclean $(NAME)
 	@echo "$(GREEN)$(NAME) built with debug flags!$(NC)"
 
 $(OUT_DIR):
@@ -127,7 +132,7 @@ help:
 
 .PHONY: all clean fclean re debug libft mlx42 deps help
 
-# Colours
+# Colors
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
 BLUE = \033[0;34m

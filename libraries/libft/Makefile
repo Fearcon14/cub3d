@@ -64,7 +64,9 @@ GNL_SRCS =	get_next_line.c				\
 SRCS = $(STRING_SRCS) $(MEM_SRCS) $(PUT_UTILS_SRCS) $(LST_SRCS) $(PRINTF_SRCS) $(GNL_SRCS)
 
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iincludes -I../includes
+INCLUDES = -I./includes -I../../includes
+BASE_CFLAGS = -Wall -Wextra -Werror
+CFLAGS += $(BASE_CFLAGS) $(INCLUDES)
 
 OBJS = $(addprefix $(OUT_DIR)/, $(SRCS:.c=.o))
 
