@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:43:33 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/16 12:53:53 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/16 14:11:26 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,13 @@ static char	*c_process_texture(char *line, t_valid_map *vm, t_map *tmap,
 			|| (ft_strncmp(dir, "SO", 2) == 0 && vm->south_textured)
 			|| (ft_strncmp(dir, "EA", 2) == 0 && vm->east_textured)
 			|| (ft_strncmp(dir, "WE", 2) == 0 && vm->west_textured))
-			error_exit("Duplicate texture declaration");
+		{
+			ft_putstr_fd("Duplicate texture declaration\n", 2);
+			vm->north_textured = false;
+			vm->south_textured = false;
+			vm->east_textured = false;
+			vm->west_textured = false;
+		}
 		path = c_extract_path(line + 2);
 		c_assign_texture(dir, path, vm, tmap);
 		line = c_skip_chars(line + 3, false);
@@ -78,7 +84,11 @@ static char	*c_process_color(char *line, t_valid_map *vm, t_map *tmap,
 	{
 		if ((ft_strncmp(type, "F", 1) == 0 && vm->floor_colored)
 			|| (ft_strncmp(type, "C", 1) == 0 && vm->ceiling_colored))
-			error_exit("Duplicate color declaration");
+		{
+			ft_putstr_fd("Duplicate color declaration\n", 2);
+			vm->floor_colored = false;
+			vm->ceiling_colored = false;
+		}
 		if (ft_strncmp(type, "F", 1) == 0)
 		{
 			vm->floor_colored = true;
