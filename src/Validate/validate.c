@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/16 13:14:57 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/16 13:22:52 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,13 @@ void	c_extract_map(char *filename, t_map *tmap, int lines_before_map)
 }
 
 // TODO: maybe have bitmap for error code (1000010) means 2 errors and which ones
-// TODO: check for .png ending ?
 int	validate_map(char *filename, t_map *tmap)
 {
 	t_valid_map	vm;
 
 	ft_bzero(&vm, sizeof(t_valid_map));
 	vm.legal_chars = true;
-	// TODO: Implement map validation logic
 	c_parse_map(filename, tmap, &vm);
-	// TODO: Check paths
 	c_check_chars(tmap->map, &vm);
 	c_check_paths_valid(&tmap->texture, &vm);
 	c_check_walls_closed(tmap->map, &vm);
