@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/12 15:43:58 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/16 13:12:17 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,10 @@ SRCS =	cub3d.c \
 		gc_holder.c \
 		parse_map.c \
 		utils.c \
-		process_line.c
+		process_line.c \
+		check_chars.c \
+		paths_valid.c \
+		walls_closed.c
 
 # Compiler
 CC = gcc

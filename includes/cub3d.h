@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/12 15:50:06 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/16 12:59:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,14 @@ void	c_parse_map(char *filename, t_map *tmap, t_valid_map *vm);
 int		open_map_file(char *filename);
 void	c_free_split(char **split);
 int		c_isspace(char c);
+
+// check_chars.c
+void	c_check_chars(char **map, t_valid_map *vm);
+
+// paths_valid.c
+void	c_check_paths_valid(t_texture *texture, t_valid_map *vm);
+
+// walls_closed.c
+void	c_check_walls_closed(char **map, t_valid_map *vm);
 
 #endif
