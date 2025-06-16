@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/16 12:59:57 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/16 15:22:34 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,8 @@ void	c_check_paths_valid(t_texture *texture, t_valid_map *vm);
 
 // walls_closed.c
 void	c_check_walls_closed(char **map, t_valid_map *vm);
+
+// print_error.c
+int		print_errors(t_valid_map *vm);
 
 #endif

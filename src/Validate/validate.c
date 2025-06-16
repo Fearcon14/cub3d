@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/16 14:23:30 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/16 15:22:22 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,48 +91,6 @@ void	c_extract_map(char *filename, t_map *tmap, int lines_before_map)
 	close(fd);
 }
 
-static int	print_errors(t_valid_map *vm)
-{
-	if (!vm->legal_chars)
-		ft_putstr_fd("Error: Illegal characters in map\n", 2);
-	if (!vm->walls_closed)
-		ft_putstr_fd("Error: Walls are not closed\n", 2);
-	if (!vm->north_path_valid)
-		ft_putstr_fd("Error: Invalid north path\n", 2);
-	if (!vm->north_textured)
-		ft_putstr_fd("Error: North path is not textured\n", 2);
-	if (!vm->south_path_valid)
-		ft_putstr_fd("Error: Invalid south path\n", 2);
-	if (!vm->south_textured)
-		ft_putstr_fd("Error: South path is not textured\n", 2);
-	if (!vm->east_path_valid)
-		ft_putstr_fd("Error: Invalid east path\n", 2);
-	if (!vm->east_textured)
-		ft_putstr_fd("Error: East path is not textured\n", 2);
-	if (!vm->west_path_valid)
-		ft_putstr_fd("Error: Invalid west path\n", 2);
-	if (!vm->west_textured)
-		ft_putstr_fd("Error: West path is not textured\n", 2);
-	if (!vm->floor_color_valid)
-		ft_putstr_fd("Error: Invalid floor color\n", 2);
-	if (!vm->ceiling_color_valid)
-		ft_putstr_fd("Error: Invalid ceiling color\n", 2);
-	if (vm->player_placed != 1)
-	{
-		ft_putstr_fd("Error: You have placed ", 2);
-		ft_putnbr_fd(vm->player_placed, 2);
-		ft_putstr_fd(" players in the map\n", 2);
-	}
-	if (!vm->legal_chars || !vm->walls_closed || !vm->north_path_valid
-		|| !vm->north_textured || !vm->south_path_valid || !vm->south_textured
-		|| !vm->east_path_valid || !vm->east_textured || !vm->west_path_valid
-		|| !vm->west_textured || !vm->floor_color_valid
-		|| !vm->ceiling_color_valid || vm->player_placed != 1)
-		return (0);
-	return (1);
-}
-
-// TODO: maybe have bitmap for error code (1000010) means 2 errors and which ones
 int	validate_map(char *filename, t_map *tmap)
 {
 	t_valid_map	vm;
