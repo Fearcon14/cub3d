@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:49:14 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 13:42:56 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:52:37 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S
 		|| keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 		move_player(game, keydata);
+	else if (keydata.key == MLX_KEY_LEFT || keydata.key == MLX_KEY_RIGHT)
+		rotate_player(game, keydata);
 }
 
 void	close_hook(void *param)

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 13:20:41 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 14:04:45 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,8 @@ void	game_loop(void *param);
 
 // movement.c
 void	move_player(t_game *game, mlx_key_data_t keydata);
+
+// rotation.c
+void	rotate_player(t_game *game, mlx_key_data_t keydata);
 
 #endif
