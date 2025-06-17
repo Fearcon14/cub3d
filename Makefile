@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/17 13:09:22 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/17 13:20:24 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,7 +48,9 @@ SRCS =	cub3d.c \
 		key_hook.c \
 		game_loop.c \
 		mouse_hook.c \
-		cursor_hook.c
+		cursor_hook.c \
+		movement.c \
+		rotation.c
 
 # Compiler
 CC = gcc

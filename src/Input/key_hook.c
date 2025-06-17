@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:49:14 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 13:00:40 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:24:09 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,10 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 {
 	t_game	*game;
 
-	game = param;
+	game = (t_game *)param;
 	if (keydata.key == MLX_KEY_ESCAPE)
 		mlx_close_window(game->mlx);
+	move_player(game, keydata);
 }
 
 void	close_hook(void *param)

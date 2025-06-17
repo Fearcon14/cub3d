@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:07:57 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 10:29:21 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:28:54 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # define SCREEN_HEIGHT 768
 # define FOV 60
 # define MAX_RAY_DISTANCE 1000
-# define MOVE_SPEED 0.05
-# define ROTATION_SPEED 0.05
+# define MOVE_SPEED 0.1
+# define ROTATION_SPEED 0.1
 
 // Wall side identifiers
 # define SIDE_NS 0 // North-South wall (vertical)
