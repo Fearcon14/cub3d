@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/16 15:25:58 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/17 10:08:39 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ CFLAGS = -Wall -Wextra -Werror
 DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
 INCLUDES = -I./includes \
            -I./libraries/libft/includes \
-           -I./libraries/MLX42/include
+           -I./libraries/MLX42/include \
 
 # Linux-specific linking flags (from MLX42 documentation)
 LDFLAGS = -ldl -lglfw -pthread -lm

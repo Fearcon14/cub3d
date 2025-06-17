@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/16 13:54:27 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 10:34:20 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	error_exit(char *msg)
 int	main(int argc, char **argv)
 {
 	t_map	map;
+	t_game	game;
 
 	if (argc != 2)
 		error_exit("Invalid number of arguments");
@@ -35,5 +36,6 @@ int	main(int argc, char **argv)
 	}
 	if (validate_map(argv[1], &map) == 0)
 		error_exit("Invalid map");
+
 	return (1);
 }
