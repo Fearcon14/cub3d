@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 12:35:04 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:08:07 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
  */
 void	error_exit(char *msg)
 {
+	// TODO: add cleanup
 	ft_printf("Error\n%s", msg);
 	exit(1);
 }
@@ -38,6 +39,13 @@ int	main(int argc, char **argv)
 		error_exit("Invalid map");
 	if (!c_init_game(&game, &map))
 		error_exit("Failed to initialize game");
+	mlx_loop_hook(game.mlx, game_loop, &game);
+	mlx_key_hook(game.mlx, key_hook, &game);
+	mlx_mouse_hook(game.mlx, mouse_hook, &game);
+	mlx_cursor_hook(game.mlx, cursor_hook, &game);
+	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop(game.mlx);
-	return (1);
+	// TODO: add cleanup
+	mlx_terminate(game.mlx);
+	return (0);
 }

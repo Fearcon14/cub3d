@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 12:32:32 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:09:31 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,19 @@ int		c_init_game(t_game *game, t_map *map);
 
 // init_wall_texture.c
 void	c_init_wall_textures(t_game *game, t_texture *texture);
+
+// key_hook.c
+void	key_hook(mlx_key_data_t keydata, void *param);
+void	close_hook(void *param);
+
+// mouse_hook.c
+void	mouse_hook(mouse_key_t button, action_t action, modifier_key_t mods,
+			void *param);
+
+// cursor_hook.c
+void	cursor_hook(double xpos, double ypos, void *param);
+
+// game_loop.c
+void	game_loop(void *param);
 
 #endif

@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_game.c                                        :+:      :+:    :+:   */
+/*   key_hook.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 12:41:35 by ksinn            ###   ########.fr       */
+/*   Created: 2025/06/17 12:49:14 by ksinn             #+#    #+#             */
+/*   Updated: 2025/06/17 13:00:40 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	c_init_game(t_game *game, t_map *map)
+void	key_hook(mlx_key_data_t keydata, void *param)
 {
-	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D", false);
-	if (!game->mlx)
-		return (0);
-	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
-	if (!game->img)
-		return (0);
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	game->map = map;
-	c_init_player(&game->player, map);
-	c_init_wall_textures(game, &map->texture);
-	return (1);
+	t_game	*game;
+
+	game = param;
+	if (keydata.key == MLX_KEY_ESCAPE)
+		mlx_close_window(game->mlx);
+}
+
+void	close_hook(void *param)
+{
+	t_game	*game;
+
+	game = (t_game *)param;
+	mlx_close_window(game->mlx);
 }
