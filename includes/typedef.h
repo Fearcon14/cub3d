@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 10:46:34 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 12:29:43 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,6 @@ typedef struct s_game
 	t_map			*map;
 	t_player		player;
 	mlx_image_t *wall_textures[4]; // Wall texture images [N,S,E,W]
-	int				screen_width;
-	int				screen_height;
 }					t_game;
 
 typedef enum e_tex_num

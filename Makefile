@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/17 10:08:39 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/17 12:32:47 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,8 @@ SRC_SUBDIRS =	$(SRC_DIR) \
 				$(SRC_DIR)/Validate \
 				$(SRC_DIR)/GarbageCollector \
 				$(SRC_DIR)/Parser \
-				$(SRC_DIR)/Utils
+				$(SRC_DIR)/Utils \
+				$(SRC_DIR)/Initialize
 
 VPATH = $(SRC_SUBDIRS)
 
@@ -38,7 +39,10 @@ SRCS =	cub3d.c \
 		check_chars.c \
 		paths_valid.c \
 		walls_closed.c \
-		print_error.c
+		print_error.c \
+		init_player.c \
+		init_game.c \
+		init_wall_texture.c
 
 # Compiler
 CC = gcc

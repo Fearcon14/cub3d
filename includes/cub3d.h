@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 10:36:59 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 12:32:32 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB3D_H
 
 # include "MLX42/MLX42.h"
+# include "defines.h"
 # include "ft_printf.h"
 # include "garbage_collector.h"
 # include "get_next_line.h"
@@ -24,7 +25,6 @@
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include "defines.h"
 
 // cub3d.c
 void	error_exit(char *msg);
@@ -59,5 +59,14 @@ void	c_check_walls_closed(char **map, t_valid_map *vm);
 
 // print_error.c
 int		print_errors(t_valid_map *vm);
+
+// init_player.c
+void	c_init_player(t_player *player, t_map *map);
+
+// init_game.c
+int		c_init_game(t_game *game, t_map *map);
+
+// init_wall_texture.c
+void	c_init_wall_textures(t_game *game, t_texture *texture);
 
 #endif
