@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:29 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 13:38:09 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/17 13:47:17 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	move_left(t_game *game)
 	double	new_y;
 
 	new_x = game->player.pos.x + game->player.dir.y * MOVE_SPEED;
-	new_y = game->player.pos.y + game->player.dir.x * MOVE_SPEED;
+	new_y = game->player.pos.y - game->player.dir.x * MOVE_SPEED;
 	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
 		game->player.pos.x = new_x;
 	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
@@ -57,7 +57,7 @@ static void	move_right(t_game *game)
 	double	new_y;
 
 	new_x = game->player.pos.x - game->player.dir.y * MOVE_SPEED;
-	new_y = game->player.pos.y - game->player.dir.x * MOVE_SPEED;
+	new_y = game->player.pos.y + game->player.dir.x * MOVE_SPEED;
 	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
 		game->player.pos.x = new_x;
 	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
