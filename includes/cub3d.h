@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 14:04:45 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 12:32:17 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,11 @@ void	move_player(t_game *game, mlx_key_data_t keydata);
 
 // rotation.c
 void	rotate_player(t_game *game, mlx_key_data_t keydata);
+
+// raycast.c
+void	raycast(t_game *game);
+
+// dda.c
+void	dda(t_game *game, t_ray *ray);
 
 #endif

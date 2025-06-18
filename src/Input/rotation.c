@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:44 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 10:34:58 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 12:56:10 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,5 @@ void	rotate_player(t_game *game, mlx_key_data_t keydata)
 		rotate_left(game);
 	else if (keydata.key == MLX_KEY_RIGHT)
 		rotate_right(game);
-	printf("Player direction: %f, %f\n", game->player.dir.x,
-		game->player.dir.y);
 	rotate_camera_plane(game);
-	printf("Player plane: %f, %f\n", game->player.plane.x,
-		game->player.plane.y);
 }

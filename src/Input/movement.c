@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:29 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 13:47:17 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 12:33:54 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,4 @@ void	move_player(t_game *game, mlx_key_data_t keydata)
 		move_left(game);
 	else if (keydata.key == MLX_KEY_D)
 		move_right(game);
-	printf("Player position: %f, %f\n", game->player.pos.x, game->player.pos.y);
 }
