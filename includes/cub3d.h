@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/18 12:32:17 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 15:02:07 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,12 @@ void	raycast(t_game *game);
 
 // dda.c
 void	dda(t_game *game, t_ray *ray);
+
+// wall_calc.c
+void	calculate_wall_distance(t_game *game, t_ray *ray);
+void	calculate_wall_height(t_ray *ray);
+
+// wall_render.c
+void	render_wall_slice(t_game *game, t_ray *ray, int x);
 
 #endif

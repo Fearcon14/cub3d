@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/17 12:29:43 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 15:15:44 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ typedef struct s_player
 {
 	t_vector		pos;
 	t_vector		dir;
-	t_vector plane; // Camera plane vector (perpendicular to direction)
+	t_vector		plane;
 }					t_player;
 
 typedef struct s_ray
@@ -105,10 +105,10 @@ typedef struct s_tex_data
 typedef struct s_game
 {
 	mlx_t			*mlx;
-	mlx_image_t *img; // Main render image
+	mlx_image_t		*img;
 	t_map			*map;
 	t_player		player;
-	mlx_image_t *wall_textures[4]; // Wall texture images [N,S,E,W]
+	mlx_image_t		*wall_textures[4];
 }					t_game;
 
 typedef enum e_tex_num

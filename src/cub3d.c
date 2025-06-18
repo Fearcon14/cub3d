@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/18 10:39:31 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 15:01:08 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	main(int argc, char **argv)
 	if (!c_init_game(&game, &map))
 		error_exit("Failed to initialize game");
 	mlx_loop_hook(game.mlx, game_loop, &game);
-	mlx_image_to_window(game.mlx, game.wall_textures[TEX_NORTH], 0, 0);
 	mlx_key_hook(game.mlx, key_hook, &game);
 	mlx_mouse_hook(game.mlx, mouse_hook, &game);
 	mlx_cursor_hook(game.mlx, cursor_hook, &game);

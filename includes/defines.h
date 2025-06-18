@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:07:57 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 12:52:49 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/18 14:52:41 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 0.05
 
-// Wall side identifiers
-# define SIDE_NS 0 // North-South wall (vertical)
-# define SIDE_EW 1 // East-West wall (horizontal)
+# define SIDE_NS 0
+# define SIDE_EW 1
 
 // Mathematical constants
 # define PI 3.14159265359
