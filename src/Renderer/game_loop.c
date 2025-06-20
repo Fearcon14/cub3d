@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:04:40 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 14:13:17 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:16:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 // 	}
 // }
 
-// call raycasting in game loop to render continuously
 void	game_loop(void *param)
 {
 	t_game				*game;
