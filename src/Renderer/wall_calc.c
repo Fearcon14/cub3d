@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 14:50:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 14:53:37 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:44:14 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	calculate_wall_distance(t_game *game, t_ray *ray)
 {
-	if (ray->side == SIDE_NS)
-	{
-		ray->perp_wall_dist = (ray->map.x - game->player.pos.x + (1
-					- ray->step.x) / 2) / ray->ray_dir.x;
-	}
-	else
+	if (ray->side == TEX_NORTH || ray->side == TEX_SOUTH)
 	{
 		ray->perp_wall_dist = (ray->map.y - game->player.pos.y + (1
 					- ray->step.y) / 2) / ray->ray_dir.y;
+	}
+	else
+	{
+		ray->perp_wall_dist = (ray->map.x - game->player.pos.x + (1
+					- ray->step.x) / 2) / ray->ray_dir.x;
 	}
 }
 

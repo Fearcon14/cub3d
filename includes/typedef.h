@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/18 15:15:44 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:19:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ typedef struct s_ray
 	double perp_wall_dist; // Perpendicular distance to wall
 	t_vector step;         // Step direction (-1 or +1)
 	int hit;               // Was a wall hit?
-	int side;              // Which side was hit? (0=NS wall, 1=EW wall)
+	int side;              // Which side was hit?
 	int line_height;       // Height of wall line to draw
 	int draw_start;        // Start pixel for wall drawing
 	int draw_end;          // End pixel for wall drawing

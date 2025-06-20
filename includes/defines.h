@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:07:57 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 13:52:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 14:43:51 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,10 @@
 # define MOVE_SPEED 0.07
 # define ROTATION_SPEED 0.05
 # define PLAYER_OFFSET 0.2
-// TODO: change to 4 different sides
-# define SIDE_NS 0
-# define SIDE_EW 1
 
 // Mathematical constants
 # define PI 3.14159265359
 # define PI_2 1.57079632679   // PI/2
 # define TWO_PI 6.28318530718 // 2*PI
-
-# define GREEN "\033[0;32m"
 
 #endif
