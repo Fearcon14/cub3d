@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/18 15:02:12 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/20 13:30:53 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,9 +47,11 @@ SRCS =	cub3d.c \
 		init_wall_texture.c \
 		key_hook.c \
 		game_loop.c \
+		hook.c \
 		mouse_hook.c \
 		cursor_hook.c \
 		movement.c \
+		wall_collision.c \
 		rotation.c \
 		raycast.c \
 		dda.c \

@@ -3,8 +3,8 @@ SO ./assets/textures/Brickwall3_Texture.png
 WE ./assets/textures/Brickwall4_Texture.png
 EA ./assets/textures/Stonewall_Texture.png
 
-F 220,100,0
-C 225,30,0
+F 102,51,0
+C 102,178,255
 
         1111111111111111111111111
         1000000000110000000000001

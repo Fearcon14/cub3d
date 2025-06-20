@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:44 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 12:56:10 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 12:42:43 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ static void	rotate_left(t_game *game)
 		+ game->player.plane.y * cos(-ROTATION_SPEED);
 }
 
-void	rotate_player(t_game *game, mlx_key_data_t keydata)
+void	rotate_player(t_game *game)
 {
-	if (keydata.key == MLX_KEY_LEFT)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_LEFT))
 		rotate_left(game);
-	else if (keydata.key == MLX_KEY_RIGHT)
+	else if (mlx_is_key_down(game->mlx, MLX_KEY_RIGHT))
 		rotate_right(game);
 	rotate_camera_plane(game);
 }

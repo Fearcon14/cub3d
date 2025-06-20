@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 10:40:13 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 15:02:27 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:49:11 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	raycast(t_game *game)
 		dda(game, &ray);
 		calculate_wall_distance(game, &ray);
 		calculate_wall_height(&ray);
+		// TODO: draw whole wall instead of slices
 		render_wall_slice(game, &ray, x);
 		// TODO: Phase 4: Texture Mapping
 		// TODO: Phase 5: Floor and Ceiling Rendering

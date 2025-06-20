@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:29 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/18 12:33:54 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:30:06 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ static void	move_forward(t_game *game)
 
 	new_x = game->player.pos.x + game->player.dir.x * MOVE_SPEED;
 	new_y = game->player.pos.y + game->player.dir.y * MOVE_SPEED;
-	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
+	if (!is_wall_collision(game, new_x, game->player.pos.y))
 		game->player.pos.x = new_x;
-	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
+	if (!is_wall_collision(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
 }
 
@@ -32,9 +32,9 @@ static void	move_backward(t_game *game)
 
 	new_x = game->player.pos.x - game->player.dir.x * MOVE_SPEED;
 	new_y = game->player.pos.y - game->player.dir.y * MOVE_SPEED;
-	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
+	if (!is_wall_collision(game, new_x, game->player.pos.y))
 		game->player.pos.x = new_x;
-	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
+	if (!is_wall_collision(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
 }
 
@@ -45,9 +45,9 @@ static void	move_left(t_game *game)
 
 	new_x = game->player.pos.x + game->player.dir.y * MOVE_SPEED;
 	new_y = game->player.pos.y - game->player.dir.x * MOVE_SPEED;
-	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
+	if (!is_wall_collision(game, new_x, game->player.pos.y))
 		game->player.pos.x = new_x;
-	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
+	if (!is_wall_collision(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
 }
 
@@ -58,20 +58,20 @@ static void	move_right(t_game *game)
 
 	new_x = game->player.pos.x - game->player.dir.y * MOVE_SPEED;
 	new_y = game->player.pos.y + game->player.dir.x * MOVE_SPEED;
-	if (game->map->map[(int)game->player.pos.y][(int)new_x] != '1')
+	if (!is_wall_collision(game, new_x, game->player.pos.y))
 		game->player.pos.x = new_x;
-	if (game->map->map[(int)new_y][(int)game->player.pos.x] != '1')
+	if (!is_wall_collision(game, game->player.pos.x, new_y))
 		game->player.pos.y = new_y;
 }
 
-void	move_player(t_game *game, mlx_key_data_t keydata)
+void	move_player(t_game *game)
 {
-	if (keydata.key == MLX_KEY_W)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		move_forward(game);
-	else if (keydata.key == MLX_KEY_S)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 		move_backward(game);
-	else if (keydata.key == MLX_KEY_A)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		move_left(game);
-	else if (keydata.key == MLX_KEY_D)
+	if (mlx_is_key_down(game->mlx, MLX_KEY_D))
 		move_right(game);
 }

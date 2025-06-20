@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/18 15:12:54 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:31:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int	c_extract_color(char *line, t_valid_map *vm, bool is_floor)
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
-	printf("r: %d, g: %d, b: %d\n", r, g, b);
 	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
 	{
 		if (is_floor)

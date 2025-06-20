@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/18 15:02:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/20 13:30:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,11 +83,17 @@ void	cursor_hook(double xpos, double ypos, void *param);
 // game_loop.c
 void	game_loop(void *param);
 
+// hook.c
+void	input_hook(void *param);
+
 // movement.c
-void	move_player(t_game *game, mlx_key_data_t keydata);
+void	move_player(t_game *game);
+
+// wall_collision.c
+int	is_wall_collision(t_game *game, double x, double y);
 
 // rotation.c
-void	rotate_player(t_game *game, mlx_key_data_t keydata);
+void	rotate_player(t_game *game);
 
 // raycast.c
 void	raycast(t_game *game);
