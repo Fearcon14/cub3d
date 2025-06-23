@@ -6,11 +6,21 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 12:28:34 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 13:02:21 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	cleanup(t_game *game)
+{
+	free_gc();
+	mlx_delete_image(game->mlx, game->wall_textures[TEX_NORTH]);
+	mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
+	mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);
+	mlx_delete_image(game->mlx, game->wall_textures[TEX_WEST]);
+	mlx_terminate(game->mlx);
+}
 
 /**
  * @brief Print error message and exit the program
@@ -47,8 +57,6 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(game.mlx, cursor_hook, &game);
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop(game.mlx);
-	mlx_terminate(game.mlx);
-	free_gc();
-	system("leaks cub3d");
+	cleanup(&game);
 	return (0);
 }

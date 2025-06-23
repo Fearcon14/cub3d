@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/20 13:31:42 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 13:06:16 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ void	c_extract_map(char *filename, t_map *tmap, int lines_before_map)
 	while (line)
 	{
 		tmap->map[i++] = ft_strtrim(line, "\n");
+		if (tmap->map[i - 1])
+			gc_add_context(MAP, tmap->map[i - 1]);
 		free(line);
 		line = get_next_line(fd);
 	}
