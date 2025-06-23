@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
+/*   By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 12:19:34 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 12:25:36 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 12:07:21 by rmakoni          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ static void	set_player_w_e(t_player *player, double fov_factor, int dir)
 		player->plane.x = -player->dir.y * fov_factor;
 		player->plane.y = player->dir.x * fov_factor;
 	}
+	else
+		error_exit("Player direction was unintialised!");
 }
 
 static void	set_player_dir(char dir, t_player *player)
@@ -60,6 +62,7 @@ static void	get_player(t_map *map, t_player *player)
 	char	dir;
 
 	y = 0;
+	dir = 0;
 	while (map->map[y])
 	{
 		x = 0;
