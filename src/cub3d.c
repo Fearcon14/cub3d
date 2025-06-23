@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/20 14:28:25 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 12:28:34 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
  */
 void	error_exit(char *msg)
 {
-	// TODO: add cleanup
+	free_gc();
 	ft_printf("Error\n%s", msg);
 	exit(1);
 }
@@ -37,6 +37,7 @@ int	main(int argc, char **argv)
 	}
 	if (validate_map(argv[1], &map) == 0)
 		error_exit("Invalid map");
+	gc_free_context(VALIDATION);
 	if (!c_init_game(&game, &map))
 		error_exit("Failed to initialize game");
 	mlx_loop_hook(game.mlx, input_hook, &game);
@@ -46,7 +47,8 @@ int	main(int argc, char **argv)
 	mlx_cursor_hook(game.mlx, cursor_hook, &game);
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop(game.mlx);
-	// TODO: add cleanup
 	mlx_terminate(game.mlx);
+	free_gc();
+	system("leaks cub3d");
 	return (0);
 }

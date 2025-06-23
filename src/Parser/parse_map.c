@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/12 15:41:08 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 12:30:17 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,6 @@ void	c_parse_map(char *filename, t_map *tmap, t_valid_map *vm)
 	if (!tmap->map)
 		error_exit("Memory allocation failed");
 	tmap->map[map_lines] = NULL;
-	gc_add_context(MAP, tmap->map);
 	c_extract_map(filename, tmap, lines_before_map);
+	gc_add_context(MAP, tmap->map);
 }

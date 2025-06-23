@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/23 12:02:11 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/23 12:28:04 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,26 +59,26 @@ SRCS =	cub3d.c \
 		wall_render.c
 
 # Compiler
-CC = gcc
+CC = cc
 
 # Performance optimization flags
-PERFORMANCE_FLAGS = -O3 \
-                   -march=native \
-                   -mtune=native \
-                   -flto \
-                   -ffast-math \
-                   -funroll-loops \
-                   -finline-functions \
-                   -fomit-frame-pointer \
-                   -fno-stack-protector \
-                   -DNDEBUG
+PERFORMANCE_FLAGS =	-O3 \
+					-march=native \
+					-mtune=native \
+					-flto \
+					-ffast-math \
+					-funroll-loops \
+					-finline-functions \
+					-fomit-frame-pointer \
+					-fno-stack-protector \
+					-DNDEBUG
 
 # Standard flags
 CFLAGS = -Wall -Wextra -Werror $(PERFORMANCE_FLAGS)
 DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined -O0
-INCLUDES = -I./includes \
-           -I./libraries/libft/includes \
-           -I./libraries/MLX42/include \
+INCLUDES =	-I./includes \
+			-I./libraries/libft/includes \
+			-I./libraries/MLX42/include \
 
 # Linux-specific linking flags (from MLX42 documentation)
 LDFLAGS = -ldl -lglfw -pthread -lm

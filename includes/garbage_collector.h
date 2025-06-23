@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/14 16:45:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/11 15:42:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 12:26:35 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,12 @@
 
 # include "libft.h"
 # include <stdlib.h>
-# define GC_ARR_SIZE 4
+# define GC_ARR_SIZE 2
 
 typedef enum e_gc_context
 {
 	VALIDATION,
-	MAP,
-	WINDOW,
-	TEXTURES,
-	PLAYER,
+	MAP
 }		t_gc_context;
 
 // gc_malloc.c
