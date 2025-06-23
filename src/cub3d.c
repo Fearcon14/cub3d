@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 15:22:47 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:24:51 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	error_exit(t_game *game, char *msg)
 	// system("leaks -groupByType cub3d");
 	exit(1);
 }
+
 // TODO: add shadows?
 int	main(int argc, char **argv)
 {
@@ -53,7 +54,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(&game, "Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
-			".cub", 4) != 0)
+		".cub", 4) != 0)
 	{
 		error_exit(&game, "Invalid file extension (.cub expected)");
 	}

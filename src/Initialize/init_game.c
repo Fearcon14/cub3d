@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 14:46:05 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:45:02 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,9 @@ int	c_init_game(t_game *game)
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	c_init_player(game);
 	c_init_wall_textures(game, &game->map->texture);
+	// Initialize mouse tracking
+	game->mouse_init = false;
+	game->last_mouse_x = 0.0;
+	game->last_mouse_y = 0.0;
 	return (1);
 }

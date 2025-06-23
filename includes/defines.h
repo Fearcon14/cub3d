@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:07:57 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 14:43:51 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:44:48 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define MAX_RAY_DISTANCE 1000
 # define MOVE_SPEED 0.07
 # define ROTATION_SPEED 0.05
+# define MOUSE_SENSITIVITY 0.003
 # define PLAYER_OFFSET 0.2
 
 // Mathematical constants

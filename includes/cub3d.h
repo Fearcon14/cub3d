@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 15:04:52 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:44:10 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ void	error_exit(t_game *game, char *msg);
 int		validate_map(char *filename, t_game *game);
 void	c_extract_map(char *filename, t_game *game, int lines_before_map);
 char	*c_extract_path(t_game *game, char *line);
-int		c_extract_color(t_game *game, char *line, t_valid_map *vm, bool is_floor);
+int		c_extract_color(t_game *game, char *line, t_valid_map *vm,
+			bool is_floor);
 
 // process_line.c
 void	c_process_line(char *line, t_valid_map *vm, t_game *game);
@@ -94,6 +95,7 @@ int		is_wall_collision(t_game *game, double x, double y);
 
 // rotation.c
 void	rotate_player(t_game *game);
+void	rotate_player_mouse(t_game *game, double mouse_delta);
 
 // raycast.c
 void	raycast(t_game *game);
