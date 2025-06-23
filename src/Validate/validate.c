@@ -6,13 +6,13 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 13:06:16 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:05:28 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-char	*c_extract_path(char *line)
+char	*c_extract_path(t_game *game, char *line)
 {
 	char	*path;
 	char	*start;
@@ -28,12 +28,12 @@ char	*c_extract_path(char *line)
 	end = line;
 	path = ft_substr(start, 0, end - start);
 	if (!path)
-		error_exit("Memory allocation failed");
+		error_exit(game, "Memory allocation failed");
 	gc_add_context(VALIDATION, path);
 	return (path);
 }
 
-int	c_extract_color(char *line, t_valid_map *vm, bool is_floor)
+int	c_extract_color(t_game *game, char *line, t_valid_map *vm, bool is_floor)
 {
 	int		r;
 	int		g;
@@ -48,7 +48,7 @@ int	c_extract_color(char *line, t_valid_map *vm, bool is_floor)
 		line++;
 	rgb = ft_split(line, ',');
 	if (!rgb)
-		error_exit("Memory allocation failed");
+		error_exit(game, "Memory allocation failed");
 	r = ft_atoi(rgb[0]);
 	g = ft_atoi(rgb[1]);
 	b = ft_atoi(rgb[2]);
@@ -62,13 +62,13 @@ int	c_extract_color(char *line, t_valid_map *vm, bool is_floor)
 	return (c_free_split(rgb), r << 24 | g << 16 | b << 8 | 0xFF);
 }
 
-void	c_extract_map(char *filename, t_map *tmap, int lines_before_map)
+void	c_extract_map(char *filename, t_game *game, int lines_before_map)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	fd = open_map_file(filename);
+	fd = open_map_file(game, filename);
 	i = 0;
 	while (i++ < lines_before_map)
 	{
@@ -84,24 +84,24 @@ void	c_extract_map(char *filename, t_map *tmap, int lines_before_map)
 	i = 0;
 	while (line)
 	{
-		tmap->map[i++] = ft_strtrim(line, "\n");
-		if (tmap->map[i - 1])
-			gc_add_context(MAP, tmap->map[i - 1]);
+		game->map->map[i++] = ft_strtrim(line, "\n");
+		if (game->map->map[i - 1])
+			gc_add_context(MAP, game->map->map[i - 1]);
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 }
 
-int	validate_map(char *filename, t_map *tmap)
+int	validate_map(char *filename, t_game *game)
 {
 	t_valid_map	vm;
 
 	ft_bzero(&vm, sizeof(t_valid_map));
 	vm.legal_chars = true;
-	c_parse_map(filename, tmap, &vm);
-	c_check_chars(tmap->map, &vm);
-	c_check_paths_valid(&tmap->texture, &vm);
-	c_check_walls_closed(tmap->map, &vm);
+	c_parse_map(filename, game, &vm);
+	c_check_chars(game->map->map, &vm);
+	c_check_paths_valid(&game->map->texture, &vm);
+	c_check_walls_closed(game->map->map, &vm);
 	return (print_errors(&vm));
 }

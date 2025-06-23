@@ -6,13 +6,13 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/17 12:41:35 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 14:46:05 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	c_init_game(t_game *game, t_map *map)
+int	c_init_game(t_game *game)
 {
 	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D", false);
 	if (!game->mlx)
@@ -21,8 +21,7 @@ int	c_init_game(t_game *game, t_map *map)
 	if (!game->img)
 		return (0);
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
-	game->map = map;
-	c_init_player(&game->player, map);
-	c_init_wall_textures(game, &map->texture);
+	c_init_player(game);
+	c_init_wall_textures(game, &game->map->texture);
 	return (1);
 }

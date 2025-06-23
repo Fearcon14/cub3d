@@ -6,14 +6,14 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 13:04:14 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:12:11 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	process_config_section(int fd, int *lines_before_map,
-		t_valid_map *vm, t_map *tmap)
+		t_valid_map *vm, t_game *game)
 {
 	char	*line;
 
@@ -33,7 +33,7 @@ static void	process_config_section(int fd, int *lines_before_map,
 			free(line);
 			break ;
 		}
-		c_process_line(line, vm, tmap);
+		c_process_line(line, vm, game);
 		(*lines_before_map)++;
 		free(line);
 		line = get_next_line(fd);
@@ -57,29 +57,40 @@ static int	count_remaining_lines(int fd)
 }
 
 int	c_count_map_lines(char *filename, int *lines_before_map, t_valid_map *vm,
-		t_map *tmap)
+		t_game *game)
 {
 	int	fd;
 	int	map_lines;
 
-	fd = open_map_file(filename);
-	process_config_section(fd, lines_before_map, vm, tmap);
+	fd = open_map_file(game, filename);
+	process_config_section(fd, lines_before_map, vm, game);
 	map_lines = count_remaining_lines(fd);
 	close(fd);
 	return (map_lines);
 }
 
-void	c_parse_map(char *filename, t_map *tmap, t_valid_map *vm)
+void	c_parse_map(char *filename, t_game *game, t_valid_map *vm)
 {
 	int	lines_before_map;
 	int	map_lines;
 
+	game->map = gc_malloc(sizeof(t_map));
+	if (!game->map)
+	{
+		vm->map_allocated = false;
+		return ;
+	}
+	gc_add_context(MAP, game->map);
 	lines_before_map = 0;
-	map_lines = c_count_map_lines(filename, &lines_before_map, vm, tmap);
-	tmap->height = map_lines;
-	tmap->map = gc_malloc(sizeof(char *) * (map_lines + 1));
-	if (!tmap->map)
-		error_exit("Memory allocation failed");
-	tmap->map[map_lines] = NULL;
-	c_extract_map(filename, tmap, lines_before_map);
+	map_lines = c_count_map_lines(filename, &lines_before_map, vm, game);
+	game->map->height = map_lines;
+	game->map->map = gc_malloc(sizeof(char *) * (map_lines + 1));
+	if (!game->map->map)
+	{
+		vm->map_allocated = false;
+		return ;
+	}
+	game->map->map[map_lines] = NULL;
+	c_extract_map(filename, game, lines_before_map);
+	vm->map_allocated = true;
 }

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/20 13:30:42 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 15:04:52 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,24 +27,24 @@
 # include <stdlib.h>
 
 // cub3d.c
-void	error_exit(char *msg);
+void	error_exit(t_game *game, char *msg);
 
 // validate.c
-int		validate_map(char *filename, t_map *map);
-void	c_extract_map(char *filename, t_map *tmap, int lines_before_map);
-char	*c_extract_path(char *line);
-int		c_extract_color(char *line, t_valid_map *vm, bool is_floor);
+int		validate_map(char *filename, t_game *game);
+void	c_extract_map(char *filename, t_game *game, int lines_before_map);
+char	*c_extract_path(t_game *game, char *line);
+int		c_extract_color(t_game *game, char *line, t_valid_map *vm, bool is_floor);
 
 // process_line.c
-void	c_process_line(char *line, t_valid_map *vm, t_map *tmap);
+void	c_process_line(char *line, t_valid_map *vm, t_game *game);
 
 // parse_map.c
 int		c_count_map_lines(char *filename, int *lines_before_map,
-			t_valid_map *vm, t_map *tmap);
-void	c_parse_map(char *filename, t_map *tmap, t_valid_map *vm);
+			t_valid_map *vm, t_game *game);
+void	c_parse_map(char *filename, t_game *game, t_valid_map *vm);
 
 // utils.c
-int		open_map_file(char *filename);
+int		open_map_file(t_game *game, char *filename);
 void	c_free_split(char **split);
 int		c_isspace(char c);
 
@@ -61,10 +61,10 @@ void	c_check_walls_closed(char **map, t_valid_map *vm);
 int		print_errors(t_valid_map *vm);
 
 // init_player.c
-void	c_init_player(t_player *player, t_map *map);
+void	c_init_player(t_game *game);
 
 // init_game.c
-int		c_init_game(t_game *game, t_map *map);
+int		c_init_game(t_game *game);
 
 // init_wall_texture.c
 void	c_init_wall_textures(t_game *game, t_texture *texture);
@@ -90,7 +90,7 @@ void	input_hook(void *param);
 void	move_player(t_game *game);
 
 // wall_collision.c
-int	is_wall_collision(t_game *game, double x, double y);
+int		is_wall_collision(t_game *game, double x, double y);
 
 // rotation.c
 void	rotate_player(t_game *game);

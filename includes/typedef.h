@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 13:52:31 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 14:51:40 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_valid_map
 	bool			ceiling_color_valid;
 
 	int				player_placed;
+	bool			map_allocated;
 }					t_valid_map;
 
 typedef struct s_texture

@@ -6,19 +6,19 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:18:55 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/12 15:41:14 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 14:58:29 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	open_map_file(char *filename)
+int	open_map_file(t_game *game, char *filename)
 {
 	int	fd;
 
 	fd = open(filename, O_RDONLY);
 	if (fd == -1)
-		error_exit("Failed to open file");
+		error_exit(game, "Failed to open file");
 	return (fd);
 }
 
