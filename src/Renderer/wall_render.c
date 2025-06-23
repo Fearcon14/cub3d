@@ -6,32 +6,69 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:25:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 14:42:51 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 11:54:49 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-// TODO: change to 4 different colors
-static uint32_t	get_wall_color(t_ray *ray)
+static void	calculate_texture_coordinates(t_game *game, t_ray *ray,
+		t_tex_data *tex)
 {
-	if (ray->side == TEX_NORTH)
-		return (0x006600FF);
-	else if (ray->side == TEX_SOUTH)
-		return (0x660000FF);
-	else if (ray->side == TEX_EAST)
-		return (0x000066FF);
-	else if (ray->side == TEX_WEST)
-		return (0xFFFFFFFF);
+	mlx_image_t	*wall_texture;
+	int			tex_width;
+	int			tex_height;
+
+	if (ray->side == TEX_NORTH || ray->side == TEX_SOUTH)
+		tex->wall_x = game->player.pos.x + ray->perp_wall_dist * ray->ray_dir.x;
 	else
-		return (0x000000FF);
+		tex->wall_x = game->player.pos.y + ray->perp_wall_dist * ray->ray_dir.y;
+	tex->wall_x -= floor(tex->wall_x);
+	wall_texture = game->wall_textures[ray->side];
+	tex_width = wall_texture->width;
+	tex_height = wall_texture->height;
+	tex->tex_x = (int)(tex->wall_x * tex_width);
+	if (tex->tex_x >= tex_width)
+		tex->tex_x = tex_width - 1;
+	tex->step = (double)tex_height / ray->line_height;
+	tex->tex_pos = (ray->draw_start - SCREEN_HEIGHT / 2 + ray->line_height / 2)
+		* tex->step;
 }
+
+static uint32_t	get_texture_pixel(mlx_image_t *texture, int tex_x, int tex_y)
+{
+	int		pixel_index;
+	uint8_t	*pixel_data;
+	uint8_t	r;
+	uint8_t	g;
+	uint8_t	b;
+	uint8_t	a;
+
+	tex_x = tex_x % texture->width;
+	tex_y = tex_y % texture->height;
+	if (tex_x < 0)
+		tex_x += texture->width;
+	if (tex_y < 0)
+		tex_y += texture->height;
+	pixel_index = (tex_y * texture->width + tex_x) * 4;
+	pixel_data = &texture->pixels[pixel_index];
+	r = pixel_data[0];
+	g = pixel_data[1];
+	b = pixel_data[2];
+	a = pixel_data[3];
+	return ((r << 24) | (g << 16) | (b << 8) | a);
+}
+
 void	render_wall_slice(t_game *game, t_ray *ray, int x)
 {
-	uint32_t	color;
+	t_tex_data	tex;
+	mlx_image_t	*wall_texture;
 	int			y;
+	uint32_t	color;
+	int			tex_y;
 
-	color = get_wall_color(ray);
+	calculate_texture_coordinates(game, ray, &tex);
+	wall_texture = game->wall_textures[ray->side];
 	y = 0;
 	while (y < ray->draw_start)
 	{
@@ -41,7 +78,13 @@ void	render_wall_slice(t_game *game, t_ray *ray, int x)
 	y = ray->draw_start;
 	while (y <= ray->draw_end)
 	{
+		tex_y = (int)tex.tex_pos;
+		tex_y = tex_y % wall_texture->height;
+		if (tex_y < 0)
+			tex_y += wall_texture->height;
+		color = get_texture_pixel(wall_texture, tex.tex_x, tex_y);
 		mlx_put_pixel(game->img, x, y, color);
+		tex.tex_pos += tex.step;
 		y++;
 	}
 	y = ray->draw_end + 1;
