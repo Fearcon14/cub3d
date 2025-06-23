@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 15:45:02 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 16:02:53 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,7 @@ int	c_init_game(t_game *game)
 	game->mouse_init = false;
 	game->last_mouse_x = 0.0;
 	game->last_mouse_y = 0.0;
+	game->right_mouse_held = false;
+	mlx_set_cursor_mode(game->mlx, MLX_MOUSE_DISABLED);
 	return (1);
 }
