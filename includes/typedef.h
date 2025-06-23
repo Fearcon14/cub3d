@@ -6,11 +6,15 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/20 14:19:57 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 13:52:31 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef TYPEDEF_H
+# define TYPEDEF_H
+
+# include "MLX42/MLX42.h"
+# include <stdbool.h>
 
 typedef struct s_vector
 {
@@ -118,3 +122,5 @@ typedef enum e_tex_num
 	TEX_EAST,
 	TEX_WEST
 }					t_tex_num;
+
+#endif

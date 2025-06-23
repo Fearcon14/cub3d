@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 13:02:21 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/23 13:58:24 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,14 @@
 void	cleanup(t_game *game)
 {
 	free_gc();
-	mlx_delete_image(game->mlx, game->wall_textures[TEX_NORTH]);
-	mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
-	mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);
-	mlx_delete_image(game->mlx, game->wall_textures[TEX_WEST]);
-	mlx_terminate(game->mlx);
+	if (game->mlx)
+	{
+		mlx_delete_image(game->mlx, game->wall_textures[TEX_NORTH]);
+		mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
+		mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);
+		mlx_delete_image(game->mlx, game->wall_textures[TEX_WEST]);
+		mlx_terminate(game->mlx);
+	}
 }
 
 /**
@@ -38,6 +41,7 @@ int	main(int argc, char **argv)
 	t_map	map;
 	t_game	game;
 
+	ft_bzero(&game, sizeof(t_game));
 	if (argc != 2)
 		error_exit("Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
