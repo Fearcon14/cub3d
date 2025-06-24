@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:07:57 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 11:22:06 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 11:31:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,19 @@
 # define MINIMAP_CELL_SIZE 10
 
 // Minimap colors (RGBA format: 0xRRGGBBAA)
-# define MINIMAP_WALL_COLOR 0x333333FF
-# define MINIMAP_FLOOR_COLOR 0xEEEEEEFF
-# define MINIMAP_PLAYER_COLOR 0xFF0000FF
-# define MINIMAP_DIRECTION_COLOR 0xFF6666FF
-# define MINIMAP_BORDER_COLOR 0x000000FF
+# define MINIMAP_WALL_COLOR 0x333333C0
+# define MINIMAP_FLOOR_COLOR 0xEEEEEEC0
+# define MINIMAP_PLAYER_COLOR 0xFF0000C0
+# define MINIMAP_DIRECTION_COLOR 0xFF6666C0
+# define MINIMAP_BORDER_COLOR 0x000000C0
 # define MINIMAP_VISION_COLOR 0x40404040
 
 // Vision cone settings
 # define MINIMAP_VISION_RANGE 5.0
-// How far the vision cone extends (in map units)
 # define MINIMAP_VISION_RAYS 25
-// Number of rays to cast for vision cone accuracy
 
-// Mathematical constants
 # define PI 3.14159265359
-# define PI_2 1.57079632679   // PI/2
-# define TWO_PI 6.28318530718 // 2*PI
+# define PI_2 1.57079632679
+# define TWO_PI 6.28318530718
 
 #endif
