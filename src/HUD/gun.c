@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 12:53:38 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 13:01:22 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:12:34 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	init_gun(t_game *game)
 	// Initialize gun state
 	game->gun.current_frame = 0;
 	game->gun.is_animating = false;
-	game->gun.animation_counter = 0;
+	game->gun.animation_time = 0.0;
 	// Position gun at bottom center of screen
 	game->gun.x_pos = (SCREEN_WIDTH - game->gun.frames[0]->width) / 2;
 	game->gun.y_pos = SCREEN_HEIGHT - game->gun.frames[0]->height;
@@ -78,32 +78,47 @@ void	start_gun_animation(t_game *game)
 {
 	if (!game->gun.is_animating)
 	{
+		// Hide frame 0 before starting animation
+		game->gun.frames[0]->enabled = false;
 		game->gun.is_animating = true;
 		game->gun.current_frame = 0;
-		game->gun.animation_counter = 0;
+		game->gun.animation_time = 0.0;
+		// Show frame 0 to start the animation
+		game->gun.frames[0]->enabled = true;
 	}
 }
 
 void	update_gun_animation(t_game *game)
 {
+	int	new_frame;
+
 	if (!game->gun.is_animating)
 		return ;
-	game->gun.animation_counter++;
-	// Check if it's time to advance to the next frame
-	if (game->gun.animation_counter >= GUN_ANIMATION_SPEED)
+	// Add delta time to animation time
+	game->gun.animation_time += game->mlx->delta_time;
+	// Calculate which frame we should be on based on elapsed time
+	new_frame = (int)(game->gun.animation_time / GUN_FRAME_DURATION);
+	// Check if we've completed the animation
+	if (game->gun.animation_time >= GUN_ANIMATION_DURATION)
 	{
 		// Hide current frame
 		game->gun.frames[game->gun.current_frame]->enabled = false;
-		// Advance to next frame
-		game->gun.current_frame++;
-		game->gun.animation_counter = 0;
-		// Check if animation is complete
-		if (game->gun.current_frame >= GUN_FRAME_COUNT)
-		{
-			game->gun.current_frame = 0;
-			game->gun.is_animating = false;
-		}
-		// Show new current frame
+		// Reset to frame 0 and stop animation
+		game->gun.current_frame = 0;
+		game->gun.is_animating = false;
+		game->gun.animation_time = 0.0;
+		// Show frame 0
+		game->gun.frames[0]->enabled = true;
+		return ;
+	}
+	// If we need to advance to a new frame
+	if (new_frame != game->gun.current_frame && new_frame < GUN_FRAME_COUNT)
+	{
+		// Hide current frame
+		game->gun.frames[game->gun.current_frame]->enabled = false;
+		// Update to new frame
+		game->gun.current_frame = new_frame;
+		// Show new frame
 		game->gun.frames[game->gun.current_frame]->enabled = true;
 	}
 }

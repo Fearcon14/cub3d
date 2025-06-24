@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 13:02:36 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:12:44 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,17 @@
 
 // Gun animation constants
 # define GUN_FRAME_COUNT 5
-# define GUN_ANIMATION_SPEED 3 // frames per animation frame
+# define GUN_ANIMATION_DURATION 0.5
+// Total animation duration in seconds
+# define GUN_FRAME_DURATION (GUN_ANIMATION_DURATION / GUN_FRAME_COUNT)
+// Duration per frame
 
 typedef struct s_gun
 {
 	mlx_image_t		*frames[GUN_FRAME_COUNT];
 	int				current_frame;
 	bool			is_animating;
-	int				animation_counter;
+	double animation_time; // Current time in animation
 	int				x_pos;
 	int				y_pos;
 }					t_gun;
