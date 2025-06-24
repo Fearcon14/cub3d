@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:16:29 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 13:30:06 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 10:22:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void	move_right(t_game *game)
 
 void	move_player(t_game *game)
 {
+	if (game->right_mouse_held)
+		return ;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 		move_forward(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))

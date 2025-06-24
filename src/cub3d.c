@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 15:24:51 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 10:55:39 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	cleanup(t_game *game)
 {
 	if (game->mlx)
 	{
+		cleanup_minimap(game);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_NORTH]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);
@@ -46,6 +47,7 @@ void	error_exit(t_game *game, char *msg)
 }
 
 // TODO: add shadows?
+// TODO: Pokemon Textures
 int	main(int argc, char **argv)
 {
 	t_game	game;
@@ -54,7 +56,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(&game, "Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
-		".cub", 4) != 0)
+			".cub", 4) != 0)
 	{
 		error_exit(&game, "Invalid file extension (.cub expected)");
 	}

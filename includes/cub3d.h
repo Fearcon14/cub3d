@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 15:44:10 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 10:55:33 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,11 @@ int		is_wall_collision(t_game *game, double x, double y);
 // rotation.c
 void	rotate_player(t_game *game);
 void	rotate_player_mouse(t_game *game, double mouse_delta);
+
+// minimap.c
+void	draw_minimap(t_game *game);
+int		init_minimap(t_game *game);
+void	cleanup_minimap(t_game *game);
 
 // raycast.c
 void	raycast(t_game *game);

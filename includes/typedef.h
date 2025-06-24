@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 16:02:52 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 10:55:47 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,10 @@ typedef struct s_game
 	double			last_mouse_y;
 	bool			mouse_init;
 	bool			right_mouse_held;
+
+	// Minimap images
+	mlx_image_t		*minimap_bg;
+	mlx_image_t		*minimap_player;
 }					t_game;
 
 typedef enum e_tex_num
