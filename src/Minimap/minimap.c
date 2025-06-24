@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:32:53 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 11:01:31 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 11:20:52 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,126 @@ static int	is_wall_at(t_game *game, int map_x, int map_y)
 		'S', 'E', 'W') */
 	return (cell != '0' && cell != 'N' && cell != 'S' && cell != 'E'
 		&& cell != 'W');
+}
+
+/**
+
+	* @brief Check if a point is visible from the player position (simple line-of-sight check)
+ * @param game The game structure
+ * @param target_x Target X coordinate in map space
+ * @param target_y Target Y coordinate in map space
+ * @return 1 if visible, 0 if blocked by wall
+ */
+static int	is_point_visible(t_game *game, double target_x, double target_y)
+{
+	double	dx;
+	double	dy;
+	double	distance;
+	double	step_x;
+	double	step_y;
+	double	current_x;
+	double	current_y;
+	int		steps;
+	int		i;
+
+	dx = target_x - game->player.pos.x;
+	dy = target_y - game->player.pos.y;
+	distance = sqrt(dx * dx + dy * dy);
+	if (distance > MINIMAP_VISION_RANGE)
+		return (0);
+	steps = (int)(distance * 10); // Check every 0.1 units
+	if (steps <= 0)
+		return (1);
+	step_x = dx / steps;
+	step_y = dy / steps;
+	current_x = game->player.pos.x;
+	current_y = game->player.pos.y;
+	i = 0;
+	while (i < steps)
+	{
+		current_x += step_x;
+		current_y += step_y;
+		if (is_wall_at(game, (int)current_x, (int)current_y))
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+/**
+ * @brief Check if a point is within the player's field of view cone
+ * @param game The game structure
+ * @param target_x Target X coordinate in map space
+ * @param target_y Target Y coordinate in map space
+ * @return 1 if within FOV, 0 if outside
+ */
+static int	is_in_fov(t_game *game, double target_x, double target_y)
+{
+	double	dx;
+	double	dy;
+	double	target_angle;
+	double	player_angle;
+	double	angle_diff;
+	double	half_fov_rad;
+
+	dx = target_x - game->player.pos.x;
+	dy = target_y - game->player.pos.y;
+	// Calculate angle to target
+	target_angle = atan2(dy, dx);
+	// Calculate player's facing angle
+	player_angle = atan2(game->player.dir.y, game->player.dir.x);
+	// Calculate angle difference
+	angle_diff = target_angle - player_angle;
+	// Normalize angle difference to [-PI, PI]
+	while (angle_diff > PI)
+		angle_diff -= TWO_PI;
+	while (angle_diff < -PI)
+		angle_diff += TWO_PI;
+	// Check if within FOV
+	half_fov_rad = (FOV * PI / 180.0) / 2.0;
+	return (fabs(angle_diff) <= half_fov_rad);
+}
+
+/**
+ * @brief Draw the vision cone overlay
+ * @param game The game structure
+ */
+static void	draw_vision_cone(t_game *game)
+{
+	int		pixel_x;
+	int		pixel_y;
+	double	map_x;
+	double	map_y;
+	double	center_map_x;
+	double	center_map_y;
+	double	start_map_x;
+	double	start_map_y;
+
+	center_map_x = game->player.pos.x;
+	center_map_y = game->player.pos.y;
+	start_map_x = center_map_x - MINIMAP_GRID_SIZE / 2.0;
+	start_map_y = center_map_y - MINIMAP_GRID_SIZE / 2.0;
+	pixel_y = 1;
+	while (pixel_y < MINIMAP_SIZE - 1)
+	{
+		pixel_x = 1;
+		while (pixel_x < MINIMAP_SIZE - 1)
+		{
+			// Convert pixel coordinates back to map coordinates
+			map_x = start_map_x + (double)(pixel_x - 1) / MINIMAP_CELL_SIZE;
+			map_y = start_map_y + (double)(pixel_y - 1) / MINIMAP_CELL_SIZE;
+			// Check if this point is within FOV and visible
+			if (is_in_fov(game, map_x, map_y) && is_point_visible(game, map_x,
+					map_y))
+			{
+				// Apply vision cone overlay (blend with existing pixel)
+				mlx_put_pixel(game->minimap_player, pixel_x, pixel_y,
+					MINIMAP_VISION_COLOR);
+			}
+			pixel_x++;
+		}
+		pixel_y++;
+	}
 }
 
 /**
@@ -188,41 +308,19 @@ static void	update_minimap_background(t_game *game)
  */
 static void	update_minimap_player(t_game *game)
 {
-	int		player_pixel_x;
-	int		player_pixel_y;
-	int		dir_end_x;
-	int		dir_end_y;
-	int		i;
-	double	t;
-	int		line_x;
-	int		line_y;
+	int	player_pixel_x;
+	int	player_pixel_y;
 
 	// Clear the player image
 	fill_image(game->minimap_player, 0x00000000); // Transparent
+	// Draw vision cone first (so it appears behind the player)
+	draw_vision_cone(game);
 	// Player is always at the center of the minimap
 	player_pixel_x = MINIMAP_SIZE / 2;
 	player_pixel_y = MINIMAP_SIZE / 2;
 	// Draw player dot (3x3 red square)
 	draw_rect(game->minimap_player, player_pixel_x - 1, player_pixel_y - 1, 3,
 		3, MINIMAP_PLAYER_COLOR);
-	// Draw direction line
-	dir_end_x = player_pixel_x + (int)(game->player.dir.x * 15);
-	dir_end_y = player_pixel_y + (int)(game->player.dir.y * 15);
-	// Simple line drawing
-	i = 0;
-	while (i <= 15)
-	{
-		t = i / 15.0;
-		line_x = player_pixel_x + (int)(t * (dir_end_x - player_pixel_x));
-		line_y = player_pixel_y + (int)(t * (dir_end_y - player_pixel_y));
-		if (line_x >= 0 && line_x < (int)game->minimap_player->width
-			&& line_y >= 0 && line_y < (int)game->minimap_player->height)
-		{
-			mlx_put_pixel(game->minimap_player, line_x, line_y,
-				MINIMAP_DIRECTION_COLOR);
-		}
-		i++;
-	}
 }
 
 /**
