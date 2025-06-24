@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/24 10:45:28 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/24 12:15:40 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRC_SUBDIRS =	$(SRC_DIR) \
 				$(SRC_DIR)/Initialize \
 				$(SRC_DIR)/Input \
 				$(SRC_DIR)/Renderer \
-				$(SRC_DIR)/Minimap
+				$(SRC_DIR)/Minimap \
+				$(SRC_DIR)/Door
 
 VPATH = $(SRC_SUBDIRS)
 
@@ -58,7 +59,9 @@ SRCS =	cub3d.c \
 		dda.c \
 		wall_calc.c \
 		wall_render.c \
-		minimap.c
+		minimap.c \
+		door.c
+
 # Compiler
 CC = cc
 

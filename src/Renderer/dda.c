@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:30:39 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/20 14:44:34 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 12:36:35 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,11 @@ void	dda(t_game *game, t_ray *ray)
 		}
 		if (game->map->map[(int)ray->map.y][(int)ray->map.x] == '1')
 			ray->hit = 1;
+		// Check for doors - only closed doors stop the ray
+		if (game->map->map[(int)ray->map.y][(int)ray->map.x] == '2')
+		{
+			if (!is_door_open(game, (int)ray->map.x, (int)ray->map.y))
+				ray->hit = 1;
+		}
 	}
 }

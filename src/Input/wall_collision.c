@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/20 13:29:44 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 15:26:04 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 12:36:20 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	is_valid_position(t_game *game, int map_x, int map_y)
 int	is_wall_collision(t_game *game, double x, double y)
 {
 	double	distance;
-	int		min_x, max_x, min_y, max_y;
-	int		map_x, map_y;
-	double	closest_x, closest_y;
 
+	int min_x, max_x, min_y, max_y;
+	int map_x, map_y;
+	double closest_x, closest_y;
 	min_x = (int)floor(x - PLAYER_OFFSET);
 	max_x = (int)floor(x + PLAYER_OFFSET);
 	min_y = (int)floor(y - PLAYER_OFFSET);
@@ -47,6 +47,19 @@ int	is_wall_collision(t_game *game, double x, double y)
 							- closest_y) * (y - closest_y));
 				if (distance < PLAYER_OFFSET)
 					return (1);
+			}
+			// Check for closed doors (treat as walls)
+			if (game->map->map[map_y][map_x] == '2')
+			{
+				if (!is_door_open(game, map_x, map_y))
+				{
+					closest_x = fmax(map_x, fmin(x, map_x + 1.0));
+					closest_y = fmax(map_y, fmin(y, map_y + 1.0));
+					distance = sqrt((x - closest_x) * (x - closest_x) + (y
+								- closest_y) * (y - closest_y));
+					if (distance < PLAYER_OFFSET)
+						return (1);
+				}
 			}
 		}
 	}

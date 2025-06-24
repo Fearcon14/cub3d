@@ -6,25 +6,31 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 13:25:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 11:54:49 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 12:45:30 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 static void	calculate_texture_coordinates(t_game *game, t_ray *ray,
-		t_tex_data *tex)
+		t_tex_data *tex, mlx_image_t **selected_texture)
 {
 	mlx_image_t	*wall_texture;
 	int			tex_width;
 	int			tex_height;
 
+	// Determine which texture will be used BEFORE calculating coordinates
+	if (game->map->map[(int)ray->map.y][(int)ray->map.x] == '2'
+		&& game->door_texture)
+		wall_texture = game->door_texture;
+	else
+		wall_texture = game->wall_textures[ray->side];
+	*selected_texture = wall_texture;
 	if (ray->side == TEX_NORTH || ray->side == TEX_SOUTH)
 		tex->wall_x = game->player.pos.x + ray->perp_wall_dist * ray->ray_dir.x;
 	else
 		tex->wall_x = game->player.pos.y + ray->perp_wall_dist * ray->ray_dir.y;
 	tex->wall_x -= floor(tex->wall_x);
-	wall_texture = game->wall_textures[ray->side];
 	tex_width = wall_texture->width;
 	tex_height = wall_texture->height;
 	tex->tex_x = (int)(tex->wall_x * tex_width);
@@ -67,8 +73,7 @@ void	render_wall_slice(t_game *game, t_ray *ray, int x)
 	uint32_t	color;
 	int			tex_y;
 
-	calculate_texture_coordinates(game, ray, &tex);
-	wall_texture = game->wall_textures[ray->side];
+	calculate_texture_coordinates(game, ray, &tex, &wall_texture);
 	y = 0;
 	while (y < ray->draw_start)
 	{

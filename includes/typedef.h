@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 10:55:47 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 12:35:55 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,13 @@ typedef struct s_vector
 	double			x;
 	double			y;
 }					t_vector;
+
+typedef struct s_door
+{
+	int				x;
+	int				y;
+	bool			is_open;
+}					t_door;
 
 // legal_chars initialized to true
 typedef struct s_valid_map
@@ -71,6 +78,8 @@ typedef struct s_map
 	char			**map;
 	int				height;
 	t_texture		texture;
+	t_door			*doors;
+	int				door_count;
 }					t_map;
 
 typedef struct s_player
@@ -114,6 +123,7 @@ typedef struct s_game
 	t_map			*map;
 	t_player		player;
 	mlx_image_t		*wall_textures[4];
+	mlx_image_t		*door_texture;
 	double			last_mouse_x;
 	double			last_mouse_y;
 	bool			mouse_init;

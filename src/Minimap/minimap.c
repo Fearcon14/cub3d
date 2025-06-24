@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:32:53 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 11:20:52 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 12:47:20 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,11 @@ static int	is_wall_at(t_game *game, int map_x, int map_y)
 		and any other non-floor character */
 	/* Return 0 (floor) only for: floor ('0'), and player start positions ('N',
 		'S', 'E', 'W') */
+	if (cell == '2')
+	{
+		// For doors, check if they're open or closed
+		return (!is_door_open(game, map_x, map_y));
+	}
 	return (cell != '0' && cell != 'N' && cell != 'S' && cell != 'E'
 		&& cell != 'W');
 }
@@ -282,7 +287,15 @@ static void	update_minimap_background(t_game *game)
 			pixel_x = 1 + grid_x * MINIMAP_CELL_SIZE - (int)offset_x;
 			pixel_y = 1 + grid_y * MINIMAP_CELL_SIZE - (int)offset_y;
 			// Choose color based on map content
-			if (is_wall_at(game, map_x, map_y))
+			if (map_x >= 0 && map_y >= 0 && map_y < game->map->height
+				&& game->map->map[map_y]
+				&& map_x < (int)ft_strlen(game->map->map[map_y])
+				&& game->map->map[map_y][map_x] == '2')
+			{
+				// This is a door - use door color
+				cell_color = MINIMAP_DOOR_COLOR;
+			}
+			else if (is_wall_at(game, map_x, map_y))
 				cell_color = MINIMAP_WALL_COLOR;
 			else
 				cell_color = MINIMAP_FLOOR_COLOR;
