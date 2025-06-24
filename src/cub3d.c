@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 10:55:39 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:01:59 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	cleanup(t_game *game)
 	if (game->mlx)
 	{
 		cleanup_minimap(game);
+		cleanup_gun(game);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_NORTH]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 12:36:46 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:01:39 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@ int	c_init_game(t_game *game)
 	door_init(game);
 	// Initialize minimap
 	if (!init_minimap(game))
+		return (0);
+	// Initialize gun
+	if (!init_gun(game))
 		return (0);
 	// Initialize mouse tracking
 	game->mouse_init = false;

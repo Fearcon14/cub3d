@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 12:35:55 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:02:36 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,20 @@
 
 # include "MLX42/MLX42.h"
 # include <stdbool.h>
+
+// Gun animation constants
+# define GUN_FRAME_COUNT 5
+# define GUN_ANIMATION_SPEED 3 // frames per animation frame
+
+typedef struct s_gun
+{
+	mlx_image_t		*frames[GUN_FRAME_COUNT];
+	int				current_frame;
+	bool			is_animating;
+	int				animation_counter;
+	int				x_pos;
+	int				y_pos;
+}					t_gun;
 
 typedef struct s_vector
 {
@@ -132,6 +146,9 @@ typedef struct s_game
 	// Minimap images
 	mlx_image_t		*minimap_bg;
 	mlx_image_t		*minimap_player;
+
+	// Gun system
+	t_gun			gun;
 }					t_game;
 
 typedef enum e_tex_num

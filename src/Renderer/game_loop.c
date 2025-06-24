@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 13:04:40 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 10:55:27 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:08:46 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	game_loop(void *param)
 	game = (t_game *)param;
 	raycast(game);
 	draw_minimap(game);
+	render_gun(game);
 	fps = (int)(1.0 / game->mlx->delta_time);
 	fps_str = ft_itoa(fps);
 	if (fps_img)

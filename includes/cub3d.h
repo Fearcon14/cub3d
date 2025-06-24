@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 12:36:04 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/24 13:00:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,5 +121,12 @@ void	door_interact(t_game *game);
 int		is_door_at(t_game *game, int x, int y);
 int		is_door_open(t_game *game, int x, int y);
 int		player_facing_door(t_game *game, int *door_x, int *door_y);
+
+// gun.c
+int		init_gun(t_game *game);
+void	render_gun(t_game *game);
+void	start_gun_animation(t_game *game);
+void	update_gun_animation(t_game *game);
+void	cleanup_gun(t_game *game);
 
 #endif
