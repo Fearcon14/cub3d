@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 13:09:11 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:23:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@ int	c_init_game(t_game *game)
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	c_init_player(game);
 	c_init_wall_textures(game, &game->map->texture);
-	// Initialize doors
 	door_init(game);
-	// Initialize minimap
 	if (!init_minimap(game))
 		return (0);
-	// Initialize gun
 	if (!init_gun(game))
 		return (0);
-	// Initialize mouse tracking
 	game->mouse_init = false;
 	game->last_mouse_x = 0.0;
 	game->last_mouse_y = 0.0;

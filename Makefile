@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/24 13:09:16 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/27 13:20:13 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,8 +62,9 @@ SRCS =	cub3d.c \
 		wall_render.c \
 		minimap.c \
 		door.c \
-		gun.c
-
+		door_init.c \
+		gun.c \
+		gun_init.c
 # Compiler
 CC = cc
 

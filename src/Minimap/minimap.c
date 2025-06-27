@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 10:32:53 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/24 12:58:15 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:06:45 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -398,8 +398,6 @@ void	draw_minimap(t_game *game)
 {
 	if (!game->minimap_bg || !game->minimap_player)
 		return ;
-	// Always update background for smooth scrolling
 	update_minimap_background(game);
-	// Always update player position
 	update_minimap_player(game);
 }

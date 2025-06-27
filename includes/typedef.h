@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 13:12:44 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:15:07 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,4 +162,15 @@ typedef enum e_tex_num
 	TEX_WEST
 }					t_tex_num;
 
+typedef struct s_door_data
+{
+	double			step_size;
+	double			current_x;
+	double			current_y;
+	double			distance;
+	int				steps;
+	int				i;
+	int				result;
+
+}					t_door_data;
 #endif

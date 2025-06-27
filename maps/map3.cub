@@ -1,10 +1,10 @@
-NO ./assets/textures/bwall.png
-SO ./assets/textures/bwall2.png
-WE ./assets/textures/bwall3.png
-EA ./assets/textures/bwall4.png
+NO ./assets/textures/mc_wall1_dark.png
+SO ./assets/textures/mc_wall1.png
+WE ./assets/textures/mc_wall2.png
+EA ./assets/textures/mc_wall2_dark.png
 
-F 102,51,0
-C 102,178,255
+F 16,16,16
+C 30,30,30
 
         1111111111111111111111111
         1002000000110000000000001

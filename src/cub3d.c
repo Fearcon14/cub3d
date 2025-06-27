@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 13:09:12 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:07:48 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ void	error_exit(t_game *game, char *msg)
 {
 	cleanup(game);
 	ft_printf("Error\n%s", msg);
-	// system("leaks -groupByType cub3d");
 	exit(1);
 }
 
@@ -57,7 +56,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(&game, "Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
-			".cub", 4) != 0)
+		".cub", 4) != 0)
 	{
 		error_exit(&game, "Invalid file extension (.cub expected)");
 	}
@@ -74,6 +73,5 @@ int	main(int argc, char **argv)
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop(game.mlx);
 	cleanup(&game);
-	// system("leaks -groupByType cub3d");
 	return (0);
 }

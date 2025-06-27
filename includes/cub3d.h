@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/24 13:09:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:20:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,17 +116,21 @@ void	calculate_wall_height(t_ray *ray);
 void	render_wall_slice(t_game *game, t_ray *ray, int x);
 
 // door.c
-void	door_init(t_game *game);
 void	door_interact(t_game *game);
 int		is_door_at(t_game *game, int x, int y);
 int		is_door_open(t_game *game, int x, int y);
 int		player_facing_door(t_game *game, int *door_x, int *door_y);
 
+// door_init.c
+void	door_init(t_game *game);
+
 // gun.c
-int		init_gun(t_game *game);
 void	render_gun(t_game *game);
 void	start_gun_animation(t_game *game);
 void	update_gun_animation(t_game *game);
 void	cleanup_gun(t_game *game);
+
+// gun_init.c
+int		init_gun(t_game *game);
 
 #endif

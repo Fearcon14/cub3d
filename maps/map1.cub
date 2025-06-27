@@ -1,10 +1,10 @@
-NO ./assets/textures/Brickwall_Texture.png
-SO ./assets/textures/Brickwall3_Texture.png
-WE ./assets/textures/Brickwall4_Texture.png
-EA ./assets/textures/Stonewall_Texture.png
+NO ./assets/textures/mc_wall1_dark.png
+SO ./assets/textures/mc_wall1.png
+WE ./assets/textures/mc_wall2.png
+EA ./assets/textures/mc_wall2_dark.png
 
-F 102,51,0
-C 102,178,255
+F 128,128,128
+C 105,105,105
 
         1111111111111111111111111
         1000000000110000000000001
