@@ -3,8 +3,8 @@ SO ./assets/textures/mc_wall1.png
 WE ./assets/textures/mc_wall2.png
 EA ./assets/textures/mc_wall2_dark.png
 
-F 128,128,128
-C 105,105,105
+F 16,16,16
+C 30,30,30
 
         1111111111111111111111111
         1000000000110000000000001

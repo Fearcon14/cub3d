@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 14:50:27 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 15:20:37 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_door
 typedef struct s_valid_map
 {
 	bool			legal_chars;
+	bool			illegal_identifier;
 
 	bool			walls_closed;
 

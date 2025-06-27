@@ -4,7 +4,7 @@ WE assets/textures/Brickwall4_Texture.png
 EA assets/textures/Stonewall_Texture.png
 
 F 0,0,0
-C 255,255,51
+C 255,-255,51
 
 111111
 100001

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:43:33 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 15:08:34 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 15:26:32 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,13 @@ void	c_process_line(char *line, t_valid_map *vm, t_game *game)
 		line = c_process_color(line, vm, game, "F");
 		line = c_process_color(line, vm, game, "C");
 		if (*line && !c_isspace(*line))
-			error_exit(game, "Invalid identifier in configuration");
+		{
+			vm->north_textured = false;
+			vm->south_textured = false;
+			vm->east_textured = false;
+			vm->west_textured = false;
+			vm->illegal_identifier = true;
+			break ;
+		}
 	}
 }

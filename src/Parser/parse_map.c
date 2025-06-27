@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 15:12:11 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 15:02:25 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	c_parse_map(char *filename, t_game *game, t_valid_map *vm)
 		vm->map_allocated = false;
 		return ;
 	}
+	gc_add_context(MAP, game->map->map);
 	game->map->map[map_lines] = NULL;
 	c_extract_map(filename, game, lines_before_map);
 	vm->map_allocated = true;

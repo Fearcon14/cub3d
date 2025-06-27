@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:22:09 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/23 14:53:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 15:21:14 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,5 +78,7 @@ int	print_errors(t_valid_map *vm)
 	print_map_errors(vm);
 	print_texture_errors(vm);
 	print_color_errors(vm);
+	if (vm->illegal_identifier)
+		ft_putstr_fd("Error: Illegal identifier in configuration\n", 2);
 	return (check_validation_status(vm));
 }
