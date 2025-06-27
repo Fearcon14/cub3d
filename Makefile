@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rmakoni <rmakoni@student.42heilbronn.de    +#+  +:+       +#+         #
+#    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/09 15:10:42 by rmakoni          ###   ########.fr        #
+#    Updated: 2025/06/27 14:48:28 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,26 +18,82 @@ OUT_DIR = out
 # Object Files
 OBJS = $(addprefix $(OUT_DIR)/, $(SRCS:.c=.o))
 
-SRC_SUBDIRS = $(SRC_DIR) \
-              $(SRC_DIR)/Validate \
-			  $(SRC_DIR)/GarbageCollector
+SRC_SUBDIRS =	$(SRC_DIR) \
+				$(SRC_DIR)/Validate \
+				$(SRC_DIR)/GarbageCollector \
+				$(SRC_DIR)/Parser \
+				$(SRC_DIR)/Utils \
+				$(SRC_DIR)/Initialize \
+				$(SRC_DIR)/Input \
+				$(SRC_DIR)/Renderer \
+				$(SRC_DIR)/Minimap \
+				$(SRC_DIR)/Door \
+				$(SRC_DIR)/HUD
 
 VPATH = $(SRC_SUBDIRS)
 
 # Source files (just filenames, no paths needed!)
-SRCS = cub3d.c \
-       validate.c \
-	   gc_malloc.c \
-	   gc_free_context.c \
-	   gc_holder.c
+SRCS =	cub3d.c \
+		validate.c \
+		gc_malloc.c \
+		gc_free_context.c \
+		gc_holder.c \
+		parse_map.c \
+		utils.c \
+		process_line.c \
+		check_chars.c \
+		paths_valid.c \
+		walls_closed.c \
+		print_error.c \
+		init_player.c \
+		init_game.c \
+		init_wall_texture.c \
+		key_hook.c \
+		game_loop.c \
+		hook.c \
+		mouse_hook.c \
+		cursor_hook.c \
+		movement.c \
+		wall_collision.c \
+		wall_collision_init.c \
+		rotation.c \
+		rotate_mouse.c \
+		raycast.c \
+		dda.c \
+		wall_calc.c \
+		wall_render.c \
+		wall_render_helper.c \
+		minimap.c \
+		init_minimap.c \
+		minimap_utils.c \
+		update_minimap.c \
+		update_minimap_player.c \
+		door.c \
+		door_init.c \
+		gun.c \
+		gun_init.c
 
 # Compiler
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined
-INCLUDES = -I./includes \
-           -I./libraries/libft/includes \
-           -I./libraries/MLX42/include
+CC = cc
+
+# Performance optimization flags
+PERFORMANCE_FLAGS =	-O3 \
+					-march=native \
+					-mtune=native \
+					-flto \
+					-ffast-math \
+					-funroll-loops \
+					-finline-functions \
+					-fomit-frame-pointer \
+					-fno-stack-protector \
+					-DNDEBUG
+
+# Standard flags
+CFLAGS = -Wall -Wextra -Werror $(PERFORMANCE_FLAGS)
+DEBUG_FLAGS = -g -fsanitize=address -fsanitize=undefined -O0
+INCLUDES =	-I./includes \
+			-I./libraries/libft/includes \
+			-I./libraries/MLX42/include \
 
 # Linux-specific linking flags (from MLX42 documentation)
 LDFLAGS = -ldl -lglfw -pthread -lm
@@ -50,9 +106,9 @@ MLX42_DIR = libraries/MLX42
 
 all: $(NAME)
 
-debug: CFLAGS += $(DEBUG_FLAGS)
-debug: LDFLAGS += $(DEBUG_FLAGS)
-debug: $(NAME)
+debug: export CFLAGS = -Wall -Wextra -Werror $(DEBUG_FLAGS)
+debug: export LDFLAGS += $(DEBUG_FLAGS)
+debug: fclean $(NAME)
 	@echo "$(GREEN)$(NAME) built with debug flags!$(NC)"
 
 $(OUT_DIR):
@@ -127,7 +183,7 @@ help:
 
 .PHONY: all clean fclean re debug libft mlx42 deps help
 
-# Colours
+# Colors
 GREEN = \033[0;32m
 YELLOW = \033[0;33m
 BLUE = \033[0;34m

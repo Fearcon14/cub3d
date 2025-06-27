@@ -3,11 +3,11 @@ SO ./game/south.xpm
 WE ./game/west.xpm
 EA ./game/east.xpm
 
-F 255,248,220
-C 25,25,112
+F 275,248,220
+C 25,-25,112
 
 11111
-10001
+10000
 10E01
 10001
 11111

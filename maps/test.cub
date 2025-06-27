@@ -1,0 +1,13 @@
+NO assets/textures/Brickwall_Texture.png
+SO assets/textures/Brickwall3_Texture.png
+WE assets/textures/Brickwall4_Texture.png
+EA assets/textures/Stonewall_Texture.png
+
+F 0,0,0
+C 255,-255,51
+
+111111
+100001
+100E01
+100001
+111111
