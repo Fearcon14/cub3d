@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/27 13:20:13 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/27 13:54:54 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,16 +55,20 @@ SRCS =	cub3d.c \
 		cursor_hook.c \
 		movement.c \
 		wall_collision.c \
+		wall_collision_init.c \
 		rotation.c \
+		rotate_mouse.c \
 		raycast.c \
 		dda.c \
 		wall_calc.c \
 		wall_render.c \
+		wall_render_helper.c \
 		minimap.c \
 		door.c \
 		door_init.c \
 		gun.c \
 		gun_init.c
+
 # Compiler
 CC = cc
 

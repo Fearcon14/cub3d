@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 13:20:42 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 13:55:18 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,14 @@ void	move_player(t_game *game);
 // wall_collision.c
 int		is_wall_collision(t_game *game, double x, double y);
 
+// wall_collision_init.c
+void	setup_collision_bounds(t_wall_collision *wc, double x, double y);
+
 // rotation.c
 void	rotate_player(t_game *game);
+void	rotate_camera_plane(t_game *game);
+
+// rotate_mouse.c
 void	rotate_player_mouse(t_game *game, double mouse_delta);
 
 // minimap.c
@@ -114,6 +120,10 @@ void	calculate_wall_height(t_ray *ray);
 
 // wall_render.c
 void	render_wall_slice(t_game *game, t_ray *ray, int x);
+
+// wall_render_helper.c
+void	calculate_texture_coordinates(t_game *game, t_ray *ray, t_tex_data *tex,
+			mlx_image_t **selected_texture);
 
 // door.c
 void	door_interact(t_game *game);

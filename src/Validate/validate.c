@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/23 15:05:28 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:08:57 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,31 @@ int	c_extract_color(t_game *game, char *line, t_valid_map *vm, bool is_floor)
 
 void	c_extract_map(char *filename, t_game *game, int lines_before_map)
 {
-	int		fd;
-	int		i;
-	char	*line;
+	t_extract_map	em;
 
-	fd = open_map_file(game, filename);
-	i = 0;
-	while (i++ < lines_before_map)
+	em.fd = open_map_file(game, filename);
+	em.i = 0;
+	while (em.i++ < lines_before_map)
 	{
-		line = get_next_line(fd);
-		free(line);
+		em.line = get_next_line(em.fd);
+		free(em.line);
 	}
-	line = get_next_line(fd);
-	while (*line && *line == '\n')
+	em.line = get_next_line(em.fd);
+	while (*em.line && *em.line == '\n')
 	{
-		free(line);
-		line = get_next_line(fd);
+		free(em.line);
+		em.line = get_next_line(em.fd);
 	}
-	i = 0;
-	while (line)
+	em.i = 0;
+	while (em.line)
 	{
-		game->map->map[i++] = ft_strtrim(line, "\n");
-		if (game->map->map[i - 1])
-			gc_add_context(MAP, game->map->map[i - 1]);
-		free(line);
-		line = get_next_line(fd);
+		game->map->map[em.i++] = ft_strtrim(em.line, "\n");
+		if (game->map->map[em.i - 1])
+			gc_add_context(MAP, game->map->map[em.i - 1]);
+		free(em.line);
+		em.line = get_next_line(em.fd);
 	}
-	close(fd);
+	close(em.fd);
 }
 
 int	validate_map(char *filename, t_game *game)

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 13:15:07 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:08:30 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,4 +173,39 @@ typedef struct s_door_data
 	int				result;
 
 }					t_door_data;
+
+typedef struct s_wall_collision
+{
+	double			distance;
+	int				min_x;
+	int				max_x;
+	int				min_y;
+	int				max_y;
+	int				map_x;
+	int				map_y;
+	double			closest_x;
+	double			closest_y;
+}					t_wall_collision;
+
+typedef struct s_rgba
+{
+	uint8_t			r;
+	uint8_t			g;
+	uint8_t			b;
+	uint8_t			a;
+}					t_rgba;
+
+typedef struct s_wall_render
+{
+	t_tex_data		tex;
+	mlx_image_t		*wall_texture;
+}					t_wall_render;
+
+typedef struct s_extract_map
+{
+	int				fd;
+	int				i;
+	char			*line;
+}					t_extract_map;
+
 #endif
