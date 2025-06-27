@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/27 13:54:54 by ksinn            ###   ########.fr        #
+#    Updated: 2025/06/27 14:48:28 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,6 +64,10 @@ SRCS =	cub3d.c \
 		wall_render.c \
 		wall_render_helper.c \
 		minimap.c \
+		init_minimap.c \
+		minimap_utils.c \
+		update_minimap.c \
+		update_minimap_player.c \
 		door.c \
 		door_init.c \
 		gun.c \

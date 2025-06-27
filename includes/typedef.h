@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 14:08:30 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:40:42 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,14 @@ typedef struct s_vector
 	double			x;
 	double			y;
 }					t_vector;
+
+typedef struct s_rect
+{
+	int				x;
+	int				y;
+	int				width;
+	int				height;
+}					t_rect;
 
 typedef struct s_door
 {
@@ -207,5 +215,47 @@ typedef struct s_extract_map
 	int				i;
 	char			*line;
 }					t_extract_map;
+
+typedef struct s_point_visible
+{
+	double			dx;
+	double			dy;
+	double			distance;
+	double			step_x;
+	double			step_y;
+	double			current_x;
+	double			current_y;
+	int				steps;
+	int				i;
+}					t_point_visible;
+
+typedef struct s_vision_cone
+{
+	int				pixel_x;
+	int				pixel_y;
+	double			map_x;
+	double			map_y;
+	double			center_map_x;
+	double			center_map_y;
+	double			start_map_x;
+	double			start_map_y;
+}					t_vision_cone;
+
+typedef struct s_minimap_background
+{
+	int				grid_x;
+	int				grid_y;
+	int				map_x;
+	int				map_y;
+	int				pixel_x;
+	int				pixel_y;
+	uint32_t		cell_color;
+	double			center_map_x;
+	double			center_map_y;
+	double			start_map_x;
+	double			start_map_y;
+	double			offset_x;
+	double			offset_y;
+}					t_minimap_background;
 
 #endif

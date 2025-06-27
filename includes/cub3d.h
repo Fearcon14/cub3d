@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 13:55:18 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:48:20 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,23 @@ void	rotate_player_mouse(t_game *game, double mouse_delta);
 
 // minimap.c
 void	draw_minimap(t_game *game);
+void	draw_vision_cone(t_game *game);
+
+// init_minimap.c
 int		init_minimap(t_game *game);
+
+// minimap_utils.c
 void	cleanup_minimap(t_game *game);
+void	fill_image(mlx_image_t *img, uint32_t color);
+int		is_wall_at(t_game *game, int map_x, int map_y);
+void	draw_rect(mlx_image_t *img, t_rect rect, uint32_t color);
+void	draw_minimap_border(mlx_image_t *img);
+
+// update_minimap.c
+void	update_minimap_background(t_game *game);
+
+// update_minimap_player.c
+void	update_minimap_player(t_game *game);
 
 // raycast.c
 void	raycast(t_game *game);
