@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 14:40:42 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/06/27 14:50:27 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # define GUN_FRAME_COUNT 5
 # define GUN_ANIMATION_DURATION 0.5
 // Total animation duration in seconds
-# define GUN_FRAME_DURATION (GUN_ANIMATION_DURATION / GUN_FRAME_COUNT)
+// (GUN_ANIMATION_DURATION / GUN_FRAME_COUNT)
+# define GUN_FRAME_DURATION 0.1
 // Duration per frame
 
 typedef struct s_gun
@@ -28,7 +29,7 @@ typedef struct s_gun
 	mlx_image_t		*frames[GUN_FRAME_COUNT];
 	int				current_frame;
 	bool			is_animating;
-	double animation_time; // Current time in animation
+	double			animation_time;
 	int				x_pos;
 	int				y_pos;
 }					t_gun;
@@ -116,28 +117,28 @@ typedef struct s_player
 
 typedef struct s_ray
 {
-	double camera_x;       // X coordinate on camera plane (-1 to +1)
-	t_vector ray_dir;      // Ray direction vector
-	t_vector map;          // Current map square (as doubles for calculations)
-	t_vector side_dist;    // Distance from current position to next side
-	t_vector delta_dist;   // Distance ray travels for 1 unit in X/Y
-	double perp_wall_dist; // Perpendicular distance to wall
-	t_vector step;         // Step direction (-1 or +1)
-	int hit;               // Was a wall hit?
-	int side;              // Which side was hit?
-	int line_height;       // Height of wall line to draw
-	int draw_start;        // Start pixel for wall drawing
-	int draw_end;          // End pixel for wall drawing
+	double			camera_x;
+	t_vector		ray_dir;
+	t_vector		map;
+	t_vector		side_dist;
+	t_vector		delta_dist;
+	double			perp_wall_dist;
+	t_vector		step;
+	int				hit;
+	int				side;
+	int				line_height;
+	int				draw_start;
+	int				draw_end;
 }					t_ray;
 
 // Texture mapping data
 typedef struct s_tex_data
 {
-	int tex_num;    // Which texture to use (0=N, 1=S, 2=E, 3=W)
-	double wall_x;  // Exact position where wall was hit
-	int tex_x;      // X coordinate on texture
-	double step;    // How much to increase tex_y per pixel
-	double tex_pos; // Current texture Y position
+	int				tex_num;
+	double			wall_x;
+	int				tex_x;
+	double			step;
+	double			tex_pos;
 }					t_tex_data;
 
 // Main game/rendering data structure
