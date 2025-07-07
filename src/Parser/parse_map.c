@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/07/07 18:02:43 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:11:01 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	c_count_map_lines(char *filename, int *lines_before_map, t_valid_map *vm,
 	fd = open_map_file(game, filename);
 	process_config_section(fd, lines_before_map, vm, game);
 	map_lines = count_remaining_lines(fd);
+	get_next_line(-1);
 	close(fd);
 	return (map_lines);
 }

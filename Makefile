@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/06/27 14:48:28 by ksinn            ###   ########.fr        #
+#    Updated: 2025/07/07 18:15:02 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ VPATH = $(SRC_SUBDIRS)
 # Source files (just filenames, no paths needed!)
 SRCS =	cub3d.c \
 		validate.c \
+		extract_map.c \
 		gc_malloc.c \
 		gc_free_context.c \
 		gc_holder.c \

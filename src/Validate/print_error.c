@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:22:09 by ksinn             #+#    #+#             */
-/*   Updated: 2025/07/07 18:05:19 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:12:06 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	print_texture_errors(t_valid_map *vm)
 	if (!vm->south_path_valid)
 		ft_putstr_fd("Error: Invalid south path\n", 2);
 	if (!vm->east_path_valid)
-		ft_putstr_fd("Error: Invalid east path\n", 2);;
+		ft_putstr_fd("Error: Invalid east path\n", 2);
 	if (!vm->west_path_valid)
 		ft_putstr_fd("Error: Invalid west path\n", 2);
 }
