@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/27 15:02:25 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:02:43 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static void	process_config_section(int fd, int *lines_before_map,
 	char	*line;
 
 	line = get_next_line(fd);
-	(*lines_before_map)++;
 	while (line)
 	{
 		if (line[0] == '\n')
 		{
+			(*lines_before_map)++;
 			free(line);
 			line = get_next_line(fd);
 			continue ;
@@ -45,8 +45,8 @@ static int	count_remaining_lines(int fd)
 	char	*line;
 	int		map_lines;
 
-	line = get_next_line(fd);
 	map_lines = 1;
+	line = get_next_line(fd);
 	while (line)
 	{
 		map_lines++;
@@ -92,6 +92,6 @@ void	c_parse_map(char *filename, t_game *game, t_valid_map *vm)
 	}
 	gc_add_context(MAP, game->map->map);
 	game->map->map[map_lines] = NULL;
-	c_extract_map(filename, game, lines_before_map);
+	c_extract_map(filename, game, lines_before_map, vm);
 	vm->map_allocated = true;
 }

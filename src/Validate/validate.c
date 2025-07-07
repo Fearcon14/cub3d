@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 14:08:57 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:09:26 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	c_extract_color(t_game *game, char *line, t_valid_map *vm, bool is_floor)
 	return (c_free_split(rgb), r << 24 | g << 16 | b << 8 | 0xFF);
 }
 
-void	c_extract_map(char *filename, t_game *game, int lines_before_map)
+void	c_extract_map(char *filename, t_game *game, int lines_before_map,
+		t_valid_map *vm)
 {
 	t_extract_map	em;
 
@@ -74,7 +75,7 @@ void	c_extract_map(char *filename, t_game *game, int lines_before_map)
 		free(em.line);
 	}
 	em.line = get_next_line(em.fd);
-	while (*em.line && *em.line == '\n')
+	while (em.line && em.line[0] == '\n')
 	{
 		free(em.line);
 		em.line = get_next_line(em.fd);
@@ -82,6 +83,13 @@ void	c_extract_map(char *filename, t_game *game, int lines_before_map)
 	em.i = 0;
 	while (em.line)
 	{
+		if (em.line[0] == '\n')
+		{
+			vm->illegal_identifier = true;
+			free(em.line);
+			close(em.fd);
+			return ;
+		}
 		game->map->map[em.i++] = ft_strtrim(em.line, "\n");
 		if (game->map->map[em.i - 1])
 			gc_add_context(MAP, game->map->map[em.i - 1]);
@@ -98,6 +106,9 @@ int	validate_map(char *filename, t_game *game)
 	ft_bzero(&vm, sizeof(t_valid_map));
 	vm.legal_chars = true;
 	c_parse_map(filename, game, &vm);
+	if (vm.illegal_identifier || !vm.map_allocated)
+		return (ft_putstr_fd("Error: Empty lines are not allowed within or after the map\n",
+				2), 0);
 	c_check_chars(game->map->map, &vm);
 	c_check_paths_valid(&game->map->texture, &vm);
 	c_check_walls_closed(game->map->map, &vm);

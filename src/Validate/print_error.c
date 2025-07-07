@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/16 15:22:09 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/27 15:21:14 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:05:19 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,20 +30,12 @@ static void	print_texture_errors(t_valid_map *vm)
 {
 	if (!vm->north_path_valid)
 		ft_putstr_fd("Error: Invalid north path\n", 2);
-	if (!vm->north_textured)
-		ft_putstr_fd("Error: North path is not textured\n", 2);
 	if (!vm->south_path_valid)
 		ft_putstr_fd("Error: Invalid south path\n", 2);
-	if (!vm->south_textured)
-		ft_putstr_fd("Error: South path is not textured\n", 2);
 	if (!vm->east_path_valid)
-		ft_putstr_fd("Error: Invalid east path\n", 2);
-	if (!vm->east_textured)
-		ft_putstr_fd("Error: East path is not textured\n", 2);
+		ft_putstr_fd("Error: Invalid east path\n", 2);;
 	if (!vm->west_path_valid)
 		ft_putstr_fd("Error: Invalid west path\n", 2);
-	if (!vm->west_textured)
-		ft_putstr_fd("Error: West path is not textured\n", 2);
 }
 
 static void	print_color_errors(t_valid_map *vm)

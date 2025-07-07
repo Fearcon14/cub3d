@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 14:48:20 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/07 18:08:08 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	error_exit(t_game *game, char *msg);
 
 // validate.c
 int		validate_map(char *filename, t_game *game);
-void	c_extract_map(char *filename, t_game *game, int lines_before_map);
+void	c_extract_map(char *filename, t_game *game, int lines_before_map,
+			t_valid_map *vm);
 char	*c_extract_path(t_game *game, char *line);
 int		c_extract_color(t_game *game, char *line, t_valid_map *vm,
 			bool is_floor);
