@@ -2,6 +2,9 @@
 # This file suppresses known false positives and third-party library issues
 # when using MLX42 with Valgrind memcheck
 #
+# NOTE: This file does NOT suppress MLX42 function calls - only external libraries
+# This allows you to catch real memory leaks in your MLX42 usage
+#
 # Usage: valgrind --suppressions=mlx42.supp ./your_program
 
 #=============================================================================
@@ -358,71 +361,7 @@
 }
 
 #=============================================================================
-# MLX42 Specific Suppressions
-#=============================================================================
-
-{
-   mlx42_init_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:mlx_init
-}
-
-{
-   mlx42_texture_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:mlx_load_png
-}
-
-{
-   mlx42_image_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:mlx_new_image
-}
-
-{
-   mlx42_window_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:mlx_new_window
-}
-
-{
-   mlx42_shader_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:mlx_compile_shader
-}
-
-{
-   mlx42_buffer_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:glGenBuffers
-   ...
-   obj:*/libMLX42.a
-}
-
-{
-   mlx42_vertex_array_leak
-   Memcheck:Leak
-   match-leak-kinds: definite,indirect,possible
-   ...
-   fun:glGenVertexArrays
-   ...
-   obj:*/libMLX42.a
-}
-
-#=============================================================================
-# PNG/Image Loading Suppressions
+# PNG/Image Loading Suppressions (External Libraries Only)
 #=============================================================================
 
 {
@@ -443,8 +382,7 @@
    libstb_image_leak
    Memcheck:Leak
    match-leak-kinds: definite,indirect,possible
-   ...
-   fun:stbi_*
+   obj:*/libstb*.so*
 }
 
 #=============================================================================
