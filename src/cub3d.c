@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 15:27:25 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:56:19 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	cleanup(t_game *game)
 void	error_exit(t_game *game, char *msg)
 {
 	cleanup(game);
-	ft_printf("Error\n%s", msg);
+	ft_printf("Error\n%s\n", msg);
 	exit(1);
 }
 

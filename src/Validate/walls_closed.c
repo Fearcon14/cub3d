@@ -6,18 +6,17 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/13 11:56:29 by ksinn             #+#    #+#             */
-/*   Updated: 2025/06/16 13:15:10 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:51:43 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	c_check_walls_closed(char **map, t_valid_map *vm)
+void	c_check_walls_closed(char **map, t_game *game)
 {
 	int	y;
 	int	x;
 
-	vm->walls_closed = true;
 	y = 0;
 	while (map[y])
 	{
@@ -30,8 +29,7 @@ void	c_check_walls_closed(char **map, t_valid_map *vm)
 					- 1][x] == ' ' || map[y + 1][x] == ' ' || map[y][x
 					- 1] == ' ' || map[y][x + 1] == ' ')
 				{
-					vm->walls_closed = false;
-					return ;
+					error_exit(game, "Walls are not closed");
 				}
 			}
 			x++;

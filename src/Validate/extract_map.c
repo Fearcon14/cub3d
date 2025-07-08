@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 18:14:08 by ksinn             #+#    #+#             */
-/*   Updated: 2025/07/07 18:19:34 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:51:46 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,18 +32,18 @@ static void	skip_empty_lines(t_extract_map *em)
 	}
 }
 
-static void	extract_map_lines(t_extract_map *em, t_game *game, t_valid_map *vm)
+static void	extract_map_lines(t_extract_map *em, t_game *game)
 {
 	em->i = 0;
 	while (em->line)
 	{
 		if (em->line[0] == '\n')
 		{
-			vm->illegal_identifier = true;
 			free(em->line);
 			get_next_line(-1);
 			close(em->fd);
-			return ;
+			error_exit(game,
+				"Empty lines are not allowed within or after the map");
 		}
 		game->map->map[em->i++] = ft_strtrim(em->line, "\n");
 		if (game->map->map[em->i - 1])
@@ -53,15 +53,14 @@ static void	extract_map_lines(t_extract_map *em, t_game *game, t_valid_map *vm)
 	}
 }
 
-void	c_extract_map(char *filename, t_game *game, int lines_before_map,
-		t_valid_map *vm)
+void	c_extract_map(char *filename, t_game *game, int lines_before_map)
 {
 	t_extract_map	em;
 
 	em.fd = open_map_file(game, filename);
 	skip_lines_before_map(&em, lines_before_map);
 	skip_empty_lines(&em);
-	extract_map_lines(&em, game, vm);
+	extract_map_lines(&em, game);
 	get_next_line(-1);
 	close(em.fd);
 }

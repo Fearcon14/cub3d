@@ -6,14 +6,13 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 15:20:18 by ksinn             #+#    #+#             */
-/*   Updated: 2025/07/07 18:11:01 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:56:28 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	process_config_section(int fd, int *lines_before_map,
-		t_valid_map *vm, t_game *game)
+static void	process_config_section(int fd, int *lines_before_map, t_game *game)
 {
 	char	*line;
 
@@ -27,13 +26,15 @@ static void	process_config_section(int fd, int *lines_before_map,
 			line = get_next_line(fd);
 			continue ;
 		}
-		if (vm->north_textured && vm->south_textured && vm->east_textured
-			&& vm->west_textured && vm->floor_colored && vm->ceiling_colored)
+		if (game->map->texture.north_path && game->map->texture.south_path
+			&& game->map->texture.east_path && game->map->texture.west_path
+			&& game->map->texture.floor_color_set
+			&& game->map->texture.ceiling_color_set)
 		{
 			free(line);
 			break ;
 		}
-		c_process_line(line, vm, game);
+		c_process_line(line, game);
 		(*lines_before_map)++;
 		free(line);
 		line = get_next_line(fd);
@@ -56,43 +57,37 @@ static int	count_remaining_lines(int fd)
 	return (map_lines);
 }
 
-int	c_count_map_lines(char *filename, int *lines_before_map, t_valid_map *vm,
-		t_game *game)
+int	c_count_map_lines(char *filename, int *lines_before_map, t_game *game)
 {
 	int	fd;
 	int	map_lines;
 
 	fd = open_map_file(game, filename);
-	process_config_section(fd, lines_before_map, vm, game);
+	process_config_section(fd, lines_before_map, game);
 	map_lines = count_remaining_lines(fd);
 	get_next_line(-1);
 	close(fd);
 	return (map_lines);
 }
 
-void	c_parse_map(char *filename, t_game *game, t_valid_map *vm)
+void	c_parse_map(char *filename, t_game *game)
 {
 	int	lines_before_map;
 	int	map_lines;
 
 	game->map = gc_malloc(sizeof(t_map));
 	if (!game->map)
-	{
-		vm->map_allocated = false;
-		return ;
-	}
+		error_exit(game, "Map allocation failed");
 	gc_add_context(MAP, game->map);
+	// Initialize texture structure
+	ft_bzero(&game->map->texture, sizeof(t_texture));
 	lines_before_map = 0;
-	map_lines = c_count_map_lines(filename, &lines_before_map, vm, game);
+	map_lines = c_count_map_lines(filename, &lines_before_map, game);
 	game->map->height = map_lines;
 	game->map->map = gc_malloc(sizeof(char *) * (map_lines + 1));
 	if (!game->map->map)
-	{
-		vm->map_allocated = false;
-		return ;
-	}
+		error_exit(game, "Map allocation failed");
 	gc_add_context(MAP, game->map->map);
 	game->map->map[map_lines] = NULL;
-	c_extract_map(filename, game, lines_before_map, vm);
-	vm->map_allocated = true;
+	c_extract_map(filename, game, lines_before_map);
 }

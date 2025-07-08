@@ -6,7 +6,7 @@
 #    By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/06/09 14:24:12 by rmakoni           #+#    #+#              #
-#    Updated: 2025/07/07 18:15:02 by ksinn            ###   ########.fr        #
+#    Updated: 2025/07/08 13:51:51 by ksinn            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,6 @@ SRCS =	cub3d.c \
 		check_chars.c \
 		paths_valid.c \
 		walls_closed.c \
-		print_error.c \
 		init_player.c \
 		init_game.c \
 		init_wall_texture.c \

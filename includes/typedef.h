@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/06/27 15:20:37 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:55:04 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,36 +55,6 @@ typedef struct s_door
 	bool			is_open;
 }					t_door;
 
-// legal_chars initialized to true
-typedef struct s_valid_map
-{
-	bool			legal_chars;
-	bool			illegal_identifier;
-
-	bool			walls_closed;
-
-	bool			north_textured;
-	bool			north_path_valid;
-
-	bool			south_textured;
-	bool			south_path_valid;
-
-	bool			east_textured;
-	bool			east_path_valid;
-
-	bool			west_textured;
-	bool			west_path_valid;
-
-	bool			floor_colored;
-	bool			floor_color_valid;
-
-	bool			ceiling_colored;
-	bool			ceiling_color_valid;
-
-	int				player_placed;
-	bool			map_allocated;
-}					t_valid_map;
-
 typedef struct s_texture
 {
 	char			*north_path;
@@ -98,6 +68,8 @@ typedef struct s_texture
 
 	int				floor_color;
 	int				ceiling_color;
+	bool			floor_color_set;
+	bool			ceiling_color_set;
 }					t_texture;
 
 typedef struct s_map

@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:20:42 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/07 18:14:49 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 13:51:48 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,17 @@ void	error_exit(t_game *game, char *msg);
 // validate.c
 int		validate_map(char *filename, t_game *game);
 char	*c_extract_path(t_game *game, char *line);
-int		c_extract_color(t_game *game, char *line, t_valid_map *vm,
-			bool is_floor);
+int		c_extract_color(t_game *game, char *line);
 
 // extract_map.c
-void	c_extract_map(char *filename, t_game *game, int lines_before_map,
-			t_valid_map *vm);
+void	c_extract_map(char *filename, t_game *game, int lines_before_map);
 
 // process_line.c
-void	c_process_line(char *line, t_valid_map *vm, t_game *game);
+void	c_process_line(char *line, t_game *game);
 
 // parse_map.c
-int		c_count_map_lines(char *filename, int *lines_before_map,
-			t_valid_map *vm, t_game *game);
-void	c_parse_map(char *filename, t_game *game, t_valid_map *vm);
+int		c_count_map_lines(char *filename, int *lines_before_map, t_game *game);
+void	c_parse_map(char *filename, t_game *game);
 
 // utils.c
 int		open_map_file(t_game *game, char *filename);
@@ -53,16 +50,13 @@ void	c_free_split(char **split);
 int		c_isspace(char c);
 
 // check_chars.c
-void	c_check_chars(char **map, t_valid_map *vm);
+void	c_check_chars(char **map, t_game *game);
 
 // paths_valid.c
-void	c_check_paths_valid(t_texture *texture, t_valid_map *vm);
+void	c_check_paths_valid(t_texture *texture, t_game *game);
 
 // walls_closed.c
-void	c_check_walls_closed(char **map, t_valid_map *vm);
-
-// print_error.c
-int		print_errors(t_valid_map *vm);
+void	c_check_walls_closed(char **map, t_game *game);
 
 // init_player.c
 void	c_init_player(t_game *game);
