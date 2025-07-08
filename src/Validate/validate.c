@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 14:06:46 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:18:14 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ char	**c_parse_color_string(t_game *game, char *line)
 	return (rgb);
 }
 
-void	c_validate_color_values(t_game *game, t_rgba color, char **rgb)
+void	c_validate_color_values(t_game *game, t_rgb color, char **rgb)
 {
 	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255
 		|| color.b < 0 || color.b > 255)
@@ -66,18 +66,16 @@ void	c_validate_color_values(t_game *game, t_rgba color, char **rgb)
 
 int	c_extract_color(t_game *game, char *line)
 {
-	t_rgba	color;
+	t_rgb	color;
 	char	**rgb;
 
 	rgb = c_parse_color_string(game, line);
 	color.r = ft_atoi(rgb[0]);
 	color.g = ft_atoi(rgb[1]);
 	color.b = ft_atoi(rgb[2]);
-	color.a = 0xFF;
 	c_validate_color_values(game, color, rgb);
 	c_free_split(rgb);
-	return ((unsigned int)color.r << 24 | (unsigned int)color.g << 16
-		| (unsigned int)color.b << 8 | color.a);
+	return ((unsigned int)color.r << 24 | (unsigned int)color.g << 16 | (unsigned int)color.b << 8 | 0xFF);
 }
 
 int	validate_map(char *filename, t_game *game)

@@ -1,7 +1,7 @@
 NO ./assets/textures/mc_wall1_dark.png
 SO ./assets/textures/mc_wall1.png
 WE ./assets/textures/mc_wall2.png
-EA ./assets/textures/mc_wall2_dark.png
+EA ./assets/texture
 
 F 16,16,16
 C 30,30,30

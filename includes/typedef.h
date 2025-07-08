@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:18:38 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 13:55:04 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:17:47 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,6 +176,13 @@ typedef struct s_rgba
 	uint8_t			b;
 	uint8_t			a;
 }					t_rgba;
+
+typedef struct s_rgb
+{
+	int				r;
+	int				g;
+	int				b;
+}					t_rgb;
 
 typedef struct s_wall_render
 {
