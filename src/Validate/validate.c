@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 14:18:14 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:43:23 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	c_extract_color(t_game *game, char *line)
 	color.b = ft_atoi(rgb[2]);
 	c_validate_color_values(game, color, rgb);
 	c_free_split(rgb);
-	return ((unsigned int)color.r << 24 | (unsigned int)color.g << 16 | (unsigned int)color.b << 8 | 0xFF);
+	return ((unsigned int)color.r << 24 | (unsigned int)color.g << 16
+		| (unsigned int)color.b << 8 | 0xFF);
 }
 
 int	validate_map(char *filename, t_game *game)

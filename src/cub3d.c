@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 14:34:59 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:43:10 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,14 @@
 
 void	cleanup(t_game *game)
 {
+	if (game->map && game->map->texture.north_texture)
+		mlx_delete_texture(game->map->texture.north_texture);
+	if (game->map && game->map->texture.south_texture)
+		mlx_delete_texture(game->map->texture.south_texture);
+	if (game->map && game->map->texture.east_texture)
+		mlx_delete_texture(game->map->texture.east_texture);
+	if (game->map && game->map->texture.west_texture)
+		mlx_delete_texture(game->map->texture.west_texture);
 	if (game->mlx)
 	{
 		cleanup_minimap(game);
@@ -22,14 +30,6 @@ void	cleanup(t_game *game)
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_SOUTH]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_EAST]);
 		mlx_delete_image(game->mlx, game->wall_textures[TEX_WEST]);
-		if (game->map && game->map->texture.north_texture)
-			mlx_delete_texture(game->map->texture.north_texture);
-		if (game->map && game->map->texture.south_texture)
-			mlx_delete_texture(game->map->texture.south_texture);
-		if (game->map && game->map->texture.east_texture)
-			mlx_delete_texture(game->map->texture.east_texture);
-		if (game->map && game->map->texture.west_texture)
-			mlx_delete_texture(game->map->texture.west_texture);
 		mlx_terminate(game->mlx);
 	}
 	free_gc();
@@ -43,7 +43,6 @@ void	error_exit(t_game *game, char *msg)
 {
 	cleanup(game);
 	ft_printf("Error\n%s\n", msg);
-	system("leaks cub3d");
 	exit(1);
 }
 
@@ -55,13 +54,10 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error_exit(&game, "Invalid number of arguments");
 	if (ft_strlen(argv[1]) < 4 || ft_strncmp(&argv[1][ft_strlen(argv[1]) - 4],
-			".cub", 4) != 0)
+		".cub", 4) != 0)
 	{
 		error_exit(&game, "Invalid file extension (.cub expected)");
 	}
-	game.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D", false);
-	if (!game.mlx)
-		error_exit(&game, "Failed to initialize MLX");
 	if (validate_map(argv[1], &game) == 0)
 		error_exit(&game, "Invalid map");
 	gc_free_context(VALIDATION);
@@ -75,6 +71,5 @@ int	main(int argc, char **argv)
 	mlx_close_hook(game.mlx, close_hook, &game);
 	mlx_loop(game.mlx);
 	cleanup(&game);
-	system("leaks cub3d");
 	return (0);
 }

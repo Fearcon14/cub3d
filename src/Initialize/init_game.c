@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/17 10:35:15 by ksinn             #+#    #+#             */
-/*   Updated: 2025/07/08 14:34:32 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:40:39 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	c_init_game(t_game *game)
 {
+	game->mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D", false);
+	if (!game->mlx)
+		return (0);
 	game->img = mlx_new_image(game->mlx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!game->img)
 		return (0);
