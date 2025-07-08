@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 13:14:04 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 14:07:24 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:34:59 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ int	main(int argc, char **argv)
 	{
 		error_exit(&game, "Invalid file extension (.cub expected)");
 	}
+	game.mlx = mlx_init(SCREEN_WIDTH, SCREEN_HEIGHT, "Cub3D", false);
+	if (!game.mlx)
+		error_exit(&game, "Failed to initialize MLX");
 	if (validate_map(argv[1], &game) == 0)
 		error_exit(&game, "Invalid map");
 	gc_free_context(VALIDATION);
