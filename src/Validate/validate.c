@@ -6,7 +6,7 @@
 /*   By: ksinn <ksinn@student.42heilbronn.de>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/09 14:13:08 by rmakoni           #+#    #+#             */
-/*   Updated: 2025/07/08 13:51:37 by ksinn            ###   ########.fr       */
+/*   Updated: 2025/07/08 14:06:46 by ksinn            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,8 @@ char	*c_extract_path(t_game *game, char *line)
 	return (path);
 }
 
-int	c_extract_color(t_game *game, char *line)
+char	**c_parse_color_string(t_game *game, char *line)
 {
-	int		r;
-	int		g;
-	int		b;
 	char	**rgb;
 	int		i;
 
@@ -54,16 +51,33 @@ int	c_extract_color(t_game *game, char *line)
 		c_free_split(rgb);
 		error_exit(game, "Invalid color format - must be R,G,B");
 	}
-	r = ft_atoi(rgb[0]);
-	g = ft_atoi(rgb[1]);
-	b = ft_atoi(rgb[2]);
-	if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
+	return (rgb);
+}
+
+void	c_validate_color_values(t_game *game, t_rgba color, char **rgb)
+{
+	if (color.r < 0 || color.r > 255 || color.g < 0 || color.g > 255
+		|| color.b < 0 || color.b > 255)
 	{
 		c_free_split(rgb);
 		error_exit(game, "Invalid color values - must be between 0 and 255");
 	}
-	return (c_free_split(rgb),
-		(unsigned int)r << 24 | (unsigned int)g << 16 | (unsigned int)b << 8 | 0xFF);
+}
+
+int	c_extract_color(t_game *game, char *line)
+{
+	t_rgba	color;
+	char	**rgb;
+
+	rgb = c_parse_color_string(game, line);
+	color.r = ft_atoi(rgb[0]);
+	color.g = ft_atoi(rgb[1]);
+	color.b = ft_atoi(rgb[2]);
+	color.a = 0xFF;
+	c_validate_color_values(game, color, rgb);
+	c_free_split(rgb);
+	return ((unsigned int)color.r << 24 | (unsigned int)color.g << 16
+		| (unsigned int)color.b << 8 | color.a);
 }
 
 int	validate_map(char *filename, t_game *game)
