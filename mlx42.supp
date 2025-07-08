@@ -1,0 +1,480 @@
+# Valgrind suppression file for MLX42
+# This file suppresses known false positives and third-party library issues
+# when using MLX42 with Valgrind memcheck
+#
+# Usage: valgrind --suppressions=mlx42.supp ./your_program
+
+#=============================================================================
+# OpenGL and Graphics Driver Suppressions
+#=============================================================================
+
+{
+   libGL_driver_leaks
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libGL.so*
+}
+
+{
+   libGL_driver_leaks_nvidia
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libGLX_nvidia.so*
+}
+
+{
+   libGL_driver_leaks_mesa
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libmesa*.so*
+}
+
+{
+   libGL_driver_uninitialized
+   Memcheck:Cond
+   obj:*/libGL.so*
+}
+
+{
+   libGL_driver_uninitialized_value
+   Memcheck:Value8
+   obj:*/libGL.so*
+}
+
+{
+   graphics_driver_uninitialized_addr
+   Memcheck:Addr4
+   obj:*/libGL.so*
+}
+
+{
+   graphics_driver_uninitialized_addr8
+   Memcheck:Addr8
+   obj:*/libGL.so*
+}
+
+{
+   nvidia_driver_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libnvidia*.so*
+}
+
+{
+   intel_driver_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/i965_dri.so*
+}
+
+{
+   radeon_driver_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/radeonsi_dri.so*
+}
+
+{
+   swrast_driver_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/swrast_dri.so*
+}
+
+#=============================================================================
+# GLFW Suppressions
+#=============================================================================
+
+{
+   glfw_init_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glfwInit
+}
+
+{
+   glfw_window_creation_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glfwCreateWindow
+}
+
+{
+   glfw_context_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glfwMakeContextCurrent
+}
+
+{
+   glfw_terminate_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glfwTerminate
+}
+
+{
+   glfw_x11_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libX11.so*
+   ...
+   obj:*/libglfw.so*
+}
+
+#=============================================================================
+# X11 and Window System Suppressions
+#=============================================================================
+
+{
+   x11_display_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:XOpenDisplay
+}
+
+{
+   x11_extension_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libX11.so*
+}
+
+{
+   x11_uninitialized
+   Memcheck:Cond
+   obj:*/libX11.so*
+}
+
+{
+   x11_uninitialized_param
+   Memcheck:Param
+   write(buf)
+   obj:*/libX11.so*
+}
+
+{
+   xrandr_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libXrandr.so*
+}
+
+{
+   xrandr_find_display
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   fun:XRRFindDisplay
+}
+
+{
+   xcursor_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libXcursor.so*
+}
+
+{
+   xi_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libXi.so*
+}
+
+{
+   xinerama_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libXinerama.so*
+}
+
+#=============================================================================
+# Font and Text Rendering Suppressions
+#=============================================================================
+
+{
+   fontconfig_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libfontconfig.so*
+}
+
+{
+   fontconfig_pattern_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:FcPatternCreate
+}
+
+{
+   fontconfig_render_prepare
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:FcFontRenderPrepare
+}
+
+{
+   freetype_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libfreetype.so*
+}
+
+{
+   harfbuzz_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libharfbuzz.so*
+}
+
+#=============================================================================
+# Dynamic Linker Suppressions
+#=============================================================================
+
+{
+   ld_uninitialized_cond
+   Memcheck:Cond
+   obj:*/ld-*.so
+   obj:*/ld-*.so
+}
+
+{
+   ld_uninitialized_addr
+   Memcheck:Addr4
+   obj:*/ld-*.so
+   obj:*/ld-*.so
+}
+
+{
+   ld_uninitialized_addr8
+   Memcheck:Addr8
+   obj:*/ld-*.so
+   obj:*/ld-*.so
+}
+
+{
+   dlopen_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:dlopen*
+}
+
+{
+   dlsym_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:dlsym
+}
+
+#=============================================================================
+# Thread and Memory Management Suppressions
+#=============================================================================
+
+{
+   pthread_create_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   fun:calloc
+   fun:allocate_dtv
+   fun:_dl_allocate_tls
+   fun:pthread_create*
+}
+
+{
+   thread_local_storage_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   fun:malloc
+   fun:_dl_allocate_tls_storage
+}
+
+#=============================================================================
+# System Library Suppressions
+#=============================================================================
+
+{
+   libc_locale_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:setlocale
+}
+
+{
+   gconv_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:__gconv_lookup_cache
+}
+
+{
+   nss_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libnss*.so*
+}
+
+{
+   nspr_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libnspr*.so*
+}
+
+{
+   zlib_uninitialized
+   Memcheck:Cond
+   obj:*/libz.so*
+   ...
+   fun:*flate
+}
+
+#=============================================================================
+# Audio System Suppressions (if MLX42 uses audio)
+#=============================================================================
+
+{
+   alsa_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libasound.so*
+}
+
+{
+   pulse_audio_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libpulse*.so*
+}
+
+#=============================================================================
+# MLX42 Specific Suppressions
+#=============================================================================
+
+{
+   mlx42_init_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:mlx_init
+}
+
+{
+   mlx42_texture_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:mlx_load_png
+}
+
+{
+   mlx42_image_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:mlx_new_image
+}
+
+{
+   mlx42_window_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:mlx_new_window
+}
+
+{
+   mlx42_shader_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:mlx_compile_shader
+}
+
+{
+   mlx42_buffer_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glGenBuffers
+   ...
+   obj:*/libMLX42.a
+}
+
+{
+   mlx42_vertex_array_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:glGenVertexArrays
+   ...
+   obj:*/libMLX42.a
+}
+
+#=============================================================================
+# PNG/Image Loading Suppressions
+#=============================================================================
+
+{
+   libpng_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libpng*.so*
+}
+
+{
+   libjpeg_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libjpeg*.so*
+}
+
+{
+   libstb_image_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   ...
+   fun:stbi_*
+}
+
+#=============================================================================
+# macOS Specific Suppressions (if running on macOS with Valgrind)
+#=============================================================================
+
+{
+   macos_objc_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/libobjc.A.dylib
+}
+
+{
+   macos_foundation_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/Foundation.framework/*
+}
+
+{
+   macos_coregraphics_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/CoreGraphics.framework/*
+}
+
+{
+   macos_opengl_leak
+   Memcheck:Leak
+   match-leak-kinds: definite,indirect,possible
+   obj:*/OpenGL.framework/*
+}
